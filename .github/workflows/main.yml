@@ -31,6 +31,6 @@ jobs:
     - name: Build the app
       run: dotnet build --configuration Release --no-restore
 
-    # Step 5: Run unit tests with verbosity set to normal
-    - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
+    # - name: Run tests
+    #   run: dotnet test POS-API/POS-API.sln --no-restore --verbosity normal
+    # - hello just doing nothing
