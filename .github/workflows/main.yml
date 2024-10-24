@@ -1,0 +1,36 @@
+name: Build and Test POS-API
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Step 2: Set up the .NET SDK (for .NET 6.0)
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'  # Specify .NET 6.0 LTS version
+
+    # Step 3: Restore project dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Step 4: Build the app in Release mode without restoring (dependencies already restored)
+    - name: Build the app
+      run: dotnet build --configuration Release --no-restore
+
+    # Step 5: Run unit tests with verbosity set to normal
+    - name: Run tests
+      run: dotnet test --no-restore --verbosity normal
