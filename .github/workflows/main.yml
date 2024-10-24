@@ -23,14 +23,14 @@ jobs:
       with:
         dotnet-version: '6.0.x'  # Specify .NET 6.0 LTS version
 
-    # Step 3: Restore project dependencies
+    # Step 3: Restore project dependencies for the solution
     - name: Restore dependencies
-      run: dotnet restore POS-API/POS-API.sln
+      run: dotnet restore POS-API/POS-API.sln  # Specify the correct solution file path
 
-    # Step 4: Build the app in Release mode without restoring (dependencies already restored)
+    # Step 4: Build the app in Release mode (no need for double build commands)
     - name: Build the app
-      run: dotnet build POS-API/POS-API.sln --configuration Release --no-restore
+      run: dotnet build POS-API/POS-API.sln --configuration Release --no-restore  # Build the solution
 
-    # Step 5: Run unit tests with verbosity set to normal
+    # Step 5: Run unit tests with verbosity set to normal (point to the solution file)
     - name: Run tests
       run: dotnet test POS-API/POS-API.sln --no-restore --verbosity normal
