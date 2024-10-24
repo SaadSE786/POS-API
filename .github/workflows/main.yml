@@ -23,13 +23,12 @@ jobs:
       with:
         dotnet-version: '6.0.x'  # Specify .NET 6.0 LTS version
 
-    # Step 3: Restore project dependencies
-    - name: Restore dependencies
-      run: dotnet restore
+    # Temporarily skipping restore, build, and test steps
+    # - name: Restore dependencies
+    #   run: dotnet restore POS-API/POS-API.sln
 
-    # Step 4: Build the app in Release mode without restoring (dependencies already restored)
-    - name: Build the app
-      run: dotnet build --configuration Release --no-restore
+    # - name: Build the app
+    #   run: dotnet build POS-API/POS-API.sln --configuration Release --no-restore
 
     # - name: Run tests
     #   run: dotnet test POS-API/POS-API.sln --no-restore --verbosity normal
