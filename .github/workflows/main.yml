@@ -24,12 +24,12 @@ jobs:
         dotnet-version: '6.0.x'  # Specify .NET 6.0 LTS version
 
     # Temporarily skipping restore, build, and test steps
-    # - name: Restore dependencies
-    #   run: dotnet restore POS-API/POS-API.sln
+    - name: Restore dependencies
+      run: dotnet restore POS-API/POS-API/POS-API.csproj
 
-    # - name: Build the app
-    #   run: dotnet build POS-API/POS-API.sln --configuration Release --no-restore
+    - name: Build the app
+      run: dotnet build POS-API/POS-API/POS-API.csproj --configuration Release --no-restore
 
-    # - name: Run tests
-    #   run: dotnet test POS-API/POS-API.sln --no-restore --verbosity normal
-    # - hello just doing nothing
+    - name: Run tests
+      run: dotnet test POS-API/POS-API/POS-API.csproj --no-restore --verbosity normal
+
