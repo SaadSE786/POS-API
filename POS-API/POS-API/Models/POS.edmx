@@ -1,0 +1,1813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="POSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCompanies">
+          <Key>
+            <PropertyRef Name="intCompanyId" />
+          </Key>
+          <Property Name="intCompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="varCompanyName" Type="varchar" MaxLength="255" />
+          <Property Name="varCompanyAddress" Type="text" />
+          <Property Name="varContactEmail" Type="varchar" MaxLength="255" />
+          <Property Name="varContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="varCompanyLogo" Type="varbinary(max)" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblComponents">
+          <Key>
+            <PropertyRef Name="intComponentId" />
+          </Key>
+          <Property Name="intComponentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intModuleId" Type="int" />
+          <Property Name="varComponentName" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblFields">
+          <Key>
+            <PropertyRef Name="intFieldId" />
+          </Key>
+          <Property Name="intFieldId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intComponentId" Type="int" />
+          <Property Name="varFieldName" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblItems">
+          <Key>
+            <PropertyRef Name="intItemId" />
+          </Key>
+          <Property Name="intItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intCompanyId" Type="int" />
+          <Property Name="varItemName" Type="varchar" MaxLength="255" />
+          <Property Name="dcOpenStock" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcMinLevel" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcMaxLevel" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcOrderLevel" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dtOpenDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="dcSellRate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcPurRate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcRetailSaleRate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcDistributorSaleRate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcDiscount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="isTaxable" Type="bit" />
+          <Property Name="isExpirable" Type="bit" />
+          <Property Name="varUom" Type="varchar" MaxLength="100" />
+          <Property Name="dtExpiryDate" Type="datetime" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblLevel1">
+          <Key>
+            <PropertyRef Name="intLevel1Id" />
+          </Key>
+          <Property Name="intLevel1Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="varLevel1Name" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+          <Property Name="intCompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblLevel2">
+          <Key>
+            <PropertyRef Name="intLevel2Id" />
+          </Key>
+          <Property Name="intLevel2Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intLevel1Id" Type="int" />
+          <Property Name="varLevel2Name" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblLevel3">
+          <Key>
+            <PropertyRef Name="intLevel3Id" />
+          </Key>
+          <Property Name="intLevel3Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intLevel2Id" Type="int" />
+          <Property Name="varLevel3Name" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblModules">
+          <Key>
+            <PropertyRef Name="intModuleId" />
+          </Key>
+          <Property Name="intModuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="varModuleName" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblParty">
+          <Key>
+            <PropertyRef Name="intPartyId" />
+          </Key>
+          <Property Name="intPartyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intCompanyId" Type="int" />
+          <Property Name="varPartyName" Type="varchar" MaxLength="255" />
+          <Property Name="varPartyType" Type="varchar" MaxLength="255" />
+          <Property Name="varAddress" Type="varchar" MaxLength="255" />
+          <Property Name="varContactNo" Type="varchar" MaxLength="255" />
+          <Property Name="varCity" Type="varchar" MaxLength="255" />
+          <Property Name="varCountry" Type="varchar" MaxLength="255" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="intLevel1Id" Type="int" />
+          <Property Name="intLevel2Id" Type="int" />
+          <Property Name="intLevel3Id" Type="int" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPermissions">
+          <Key>
+            <PropertyRef Name="intPermissionId" />
+          </Key>
+          <Property Name="intPermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intRoleId" Type="int" />
+          <Property Name="intModuleId" Type="int" />
+          <Property Name="intComponentId" Type="int" />
+          <Property Name="intFieldId" Type="int" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPledger">
+          <Key>
+            <PropertyRef Name="intPlid" />
+          </Key>
+          <Property Name="intPlid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intCompanyId" Type="int" />
+          <Property Name="intPartyId" Type="int" />
+          <Property Name="intDcno" Type="int" />
+          <Property Name="dtVrDate" Type="datetime" />
+          <Property Name="varDescription" Type="varchar" MaxLength="1000" />
+          <Property Name="varVrType" Type="varchar" MaxLength="255" />
+          <Property Name="dcDebit" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="dcCredit" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="intRoleId" />
+          </Key>
+          <Property Name="intRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intCompanyId" Type="int" />
+          <Property Name="varName" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblStockDetail">
+          <Key>
+            <PropertyRef Name="intStockDetailId" />
+          </Key>
+          <Property Name="intStockDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intStid" Type="int" />
+          <Property Name="intItemId" Type="int" />
+          <Property Name="intWarehouseId" Type="int" />
+          <Property Name="intQuantity" Type="int" />
+          <Property Name="dcRate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcAmount" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="dcDisc" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcDiscAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcExclTaxAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcTax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcTaxAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcInclTaxAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="varType" Type="varchar" MaxLength="255" />
+          <Property Name="dcPurRate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblStockMain">
+          <Key>
+            <PropertyRef Name="intStid" />
+          </Key>
+          <Property Name="intStid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intCompanyId" Type="int" />
+          <Property Name="intPartyId" Type="int" />
+          <Property Name="intVrno" Type="int" />
+          <Property Name="intVrnoA" Type="int" />
+          <Property Name="dtVrDate" Type="datetime" />
+          <Property Name="varRemarks" Type="varchar" MaxLength="1000" />
+          <Property Name="intTransporterId" Type="int" />
+          <Property Name="varVrType" Type="varchar" MaxLength="255" />
+          <Property Name="dcDiscount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcDiscountAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcExpense" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcAdditionalCharges" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="dcNetAmount" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblTransporter">
+          <Key>
+            <PropertyRef Name="intTransporterId" />
+          </Key>
+          <Property Name="intTransporterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="varTransporterName" Type="varchar" MaxLength="255" />
+          <Property Name="varContactNo" Type="varchar" MaxLength="255" />
+          <Property Name="varAddress" Type="varchar" MaxLength="255" />
+          <Property Name="varEmail" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+          <Property Name="intCompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUserRoles">
+          <Key>
+            <PropertyRef Name="intUserId" />
+            <PropertyRef Name="intRoleId" />
+          </Key>
+          <Property Name="intUserId" Type="int" Nullable="false" />
+          <Property Name="intRoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="intUserId" />
+          </Key>
+          <Property Name="intUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intCompanyId" Type="int" />
+          <Property Name="varName" Type="varchar" MaxLength="255" />
+          <Property Name="varEmail" Type="varchar" MaxLength="255" />
+          <Property Name="varPassword" Type="varchar" MaxLength="255" />
+          <Property Name="varAddress" Type="varchar" MaxLength="255" />
+          <Property Name="varCnic" Type="varchar" MaxLength="255" />
+          <Property Name="varContactNo" Type="varchar" MaxLength="255" />
+          <Property Name="isAdmin" Type="bit" />
+          <Property Name="varPhoto" Type="varbinary(max)" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblWarehouse">
+          <Key>
+            <PropertyRef Name="intWarehouseId" />
+          </Key>
+          <Property Name="intWarehouseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="varWarehouseName" Type="varchar" MaxLength="255" />
+          <Property Name="dtCreationDate" Type="datetime" />
+          <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
+          <Property Name="intCompanyId" Type="int" />
+        </EntityType>
+        <Association Name="FK__tblCompon__intMo__4F47C5E3">
+          <End Role="tblModules" Type="Self.tblModules" Multiplicity="0..1" />
+          <End Role="tblComponents" Type="Self.tblComponents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModules">
+              <PropertyRef Name="intModuleId" />
+            </Principal>
+            <Dependent Role="tblComponents">
+              <PropertyRef Name="intModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFields__intCo__5224328E">
+          <End Role="tblComponents" Type="Self.tblComponents" Multiplicity="0..1" />
+          <End Role="tblFields" Type="Self.tblFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComponents">
+              <PropertyRef Name="intComponentId" />
+            </Principal>
+            <Dependent Role="tblFields">
+              <PropertyRef Name="intComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblItems__intCom__681373AD">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblItems" Type="Self.tblItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblItems">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLevel2__intLe__5CA1C101">
+          <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
+          <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel1">
+              <PropertyRef Name="intLevel1Id" />
+            </Principal>
+            <Dependent Role="tblLevel2">
+              <PropertyRef Name="intLevel1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLevel3__intLe__5F7E2DAC">
+          <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
+          <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel2">
+              <PropertyRef Name="intLevel2Id" />
+            </Principal>
+            <Dependent Role="tblLevel3">
+              <PropertyRef Name="intLevel2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intCom__625A9A57">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intLev__634EBE90">
+          <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel1">
+              <PropertyRef Name="intLevel1Id" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intLevel1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intLev__6442E2C9">
+          <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel2">
+              <PropertyRef Name="intLevel2Id" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intLevel2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intLev__65370702">
+          <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel3">
+              <PropertyRef Name="intLevel3Id" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intLevel3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intCo__56E8E7AB">
+          <End Role="tblComponents" Type="Self.tblComponents" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComponents">
+              <PropertyRef Name="intComponentId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intFi__57DD0BE4">
+          <End Role="tblFields" Type="Self.tblFields" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFields">
+              <PropertyRef Name="intFieldId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intMo__55F4C372">
+          <End Role="tblModules" Type="Self.tblModules" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModules">
+              <PropertyRef Name="intModuleId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intRo__55009F39">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="intRoleId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPledge__intCo__7849DB76">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblPledger">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPledge__intPa__793DFFAF">
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
+          <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblParty">
+              <PropertyRef Name="intPartyId" />
+            </Principal>
+            <Dependent Role="tblPledger">
+              <PropertyRef Name="intPartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRoles__intCom__46B27FE2">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblRoles">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockD__intIt__74794A92">
+          <End Role="tblItems" Type="Self.tblItems" Multiplicity="0..1" />
+          <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItems">
+              <PropertyRef Name="intItemId" />
+            </Principal>
+            <Dependent Role="tblStockDetail">
+              <PropertyRef Name="intItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockD__intSt__73852659">
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="0..1" />
+          <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStockMain">
+              <PropertyRef Name="intStid" />
+            </Principal>
+            <Dependent Role="tblStockDetail">
+              <PropertyRef Name="intStid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockD__intWa__756D6ECB">
+          <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="0..1" />
+          <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWarehouse">
+              <PropertyRef Name="intWarehouseId" />
+            </Principal>
+            <Dependent Role="tblStockDetail">
+              <PropertyRef Name="intWarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockM__intCo__6EC0713C">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblStockMain">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockM__intPa__6FB49575">
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblParty">
+              <PropertyRef Name="intPartyId" />
+            </Principal>
+            <Dependent Role="tblStockMain">
+              <PropertyRef Name="intPartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockM__intTr__70A8B9AE">
+          <End Role="tblTransporter" Type="Self.tblTransporter" Multiplicity="0..1" />
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTransporter">
+              <PropertyRef Name="intTransporterId" />
+            </Principal>
+            <Dependent Role="tblStockMain">
+              <PropertyRef Name="intTransporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserRo__intRo__4A8310C6">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="1" />
+          <End Role="tblUserRoles" Type="Self.tblUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="intRoleId" />
+            </Principal>
+            <Dependent Role="tblUserRoles">
+              <PropertyRef Name="intRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserRo__intUs__498EEC8D">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUserRoles" Type="Self.tblUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="intUserId" />
+            </Principal>
+            <Dependent Role="tblUserRoles">
+              <PropertyRef Name="intUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsers__intCom__43D61337">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tablLevel1_intCompanyId">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblLevel1">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransporter_intCompanyId">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblTransporter" Type="Self.tblTransporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblTransporter">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWarehouse_intCompanyId">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblWarehouse">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="POSModelStoreContainer">
+          <EntitySet Name="tblCompanies" EntityType="Self.tblCompanies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblComponents" EntityType="Self.tblComponents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFields" EntityType="Self.tblFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblItems" EntityType="Self.tblItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLevel1" EntityType="Self.tblLevel1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLevel2" EntityType="Self.tblLevel2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLevel3" EntityType="Self.tblLevel3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblModules" EntityType="Self.tblModules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblParty" EntityType="Self.tblParty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPermissions" EntityType="Self.tblPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPledger" EntityType="Self.tblPledger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStockDetail" EntityType="Self.tblStockDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStockMain" EntityType="Self.tblStockMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTransporter" EntityType="Self.tblTransporter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserRoles" EntityType="Self.tblUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWarehouse" EntityType="Self.tblWarehouse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblCompon__intMo__4F47C5E3" Association="Self.FK__tblCompon__intMo__4F47C5E3">
+            <End Role="tblModules" EntitySet="tblModules" />
+            <End Role="tblComponents" EntitySet="tblComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFields__intCo__5224328E" Association="Self.FK__tblFields__intCo__5224328E">
+            <End Role="tblComponents" EntitySet="tblComponents" />
+            <End Role="tblFields" EntitySet="tblFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblItems__intCom__681373AD" Association="Self.FK__tblItems__intCom__681373AD">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblItems" EntitySet="tblItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLevel2__intLe__5CA1C101" Association="Self.FK__tblLevel2__intLe__5CA1C101">
+            <End Role="tblLevel1" EntitySet="tblLevel1" />
+            <End Role="tblLevel2" EntitySet="tblLevel2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLevel3__intLe__5F7E2DAC" Association="Self.FK__tblLevel3__intLe__5F7E2DAC">
+            <End Role="tblLevel2" EntitySet="tblLevel2" />
+            <End Role="tblLevel3" EntitySet="tblLevel3" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intCom__625A9A57" Association="Self.FK__tblParty__intCom__625A9A57">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblParty" EntitySet="tblParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intLev__634EBE90" Association="Self.FK__tblParty__intLev__634EBE90">
+            <End Role="tblLevel1" EntitySet="tblLevel1" />
+            <End Role="tblParty" EntitySet="tblParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intLev__6442E2C9" Association="Self.FK__tblParty__intLev__6442E2C9">
+            <End Role="tblLevel2" EntitySet="tblLevel2" />
+            <End Role="tblParty" EntitySet="tblParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intLev__65370702" Association="Self.FK__tblParty__intLev__65370702">
+            <End Role="tblLevel3" EntitySet="tblLevel3" />
+            <End Role="tblParty" EntitySet="tblParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intCo__56E8E7AB" Association="Self.FK__tblPermis__intCo__56E8E7AB">
+            <End Role="tblComponents" EntitySet="tblComponents" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intFi__57DD0BE4" Association="Self.FK__tblPermis__intFi__57DD0BE4">
+            <End Role="tblFields" EntitySet="tblFields" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intMo__55F4C372" Association="Self.FK__tblPermis__intMo__55F4C372">
+            <End Role="tblModules" EntitySet="tblModules" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intRo__55009F39" Association="Self.FK__tblPermis__intRo__55009F39">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPledge__intCo__7849DB76" Association="Self.FK__tblPledge__intCo__7849DB76">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblPledger" EntitySet="tblPledger" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPledge__intPa__793DFFAF" Association="Self.FK__tblPledge__intPa__793DFFAF">
+            <End Role="tblParty" EntitySet="tblParty" />
+            <End Role="tblPledger" EntitySet="tblPledger" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRoles__intCom__46B27FE2" Association="Self.FK__tblRoles__intCom__46B27FE2">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblRoles" EntitySet="tblRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockD__intIt__74794A92" Association="Self.FK__tblStockD__intIt__74794A92">
+            <End Role="tblItems" EntitySet="tblItems" />
+            <End Role="tblStockDetail" EntitySet="tblStockDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockD__intSt__73852659" Association="Self.FK__tblStockD__intSt__73852659">
+            <End Role="tblStockMain" EntitySet="tblStockMain" />
+            <End Role="tblStockDetail" EntitySet="tblStockDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockD__intWa__756D6ECB" Association="Self.FK__tblStockD__intWa__756D6ECB">
+            <End Role="tblWarehouse" EntitySet="tblWarehouse" />
+            <End Role="tblStockDetail" EntitySet="tblStockDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockM__intCo__6EC0713C" Association="Self.FK__tblStockM__intCo__6EC0713C">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblStockMain" EntitySet="tblStockMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockM__intPa__6FB49575" Association="Self.FK__tblStockM__intPa__6FB49575">
+            <End Role="tblParty" EntitySet="tblParty" />
+            <End Role="tblStockMain" EntitySet="tblStockMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockM__intTr__70A8B9AE" Association="Self.FK__tblStockM__intTr__70A8B9AE">
+            <End Role="tblTransporter" EntitySet="tblTransporter" />
+            <End Role="tblStockMain" EntitySet="tblStockMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserRo__intRo__4A8310C6" Association="Self.FK__tblUserRo__intRo__4A8310C6">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblUserRoles" EntitySet="tblUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserRo__intUs__498EEC8D" Association="Self.FK__tblUserRo__intUs__498EEC8D">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserRoles" EntitySet="tblUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsers__intCom__43D61337" Association="Self.FK__tblUsers__intCom__43D61337">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tablLevel1_intCompanyId" Association="Self.FK_tablLevel1_intCompanyId">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblLevel1" EntitySet="tblLevel1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransporter_intCompanyId" Association="Self.FK_tblTransporter_intCompanyId">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblTransporter" EntitySet="tblTransporter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWarehouse_intCompanyId" Association="Self.FK_tblWarehouse_intCompanyId">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblWarehouse" EntitySet="tblWarehouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="POSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCompany">
+          <Key>
+            <PropertyRef Name="intCompanyId" />
+          </Key>
+          <Property Name="intCompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="varCompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varCompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="varContactEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="varCompanyLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblItems" Relationship="Self.FK__tblItems__intCom__681373AD" FromRole="tblCompanies" ToRole="tblItems" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intCom__625A9A57" FromRole="tblCompanies" ToRole="tblParty" />
+          <NavigationProperty Name="tblPledgers" Relationship="Self.FK__tblPledge__intCo__7849DB76" FromRole="tblCompanies" ToRole="tblPledger" />
+          <NavigationProperty Name="tblRoles" Relationship="Self.FK__tblRoles__intCom__46B27FE2" FromRole="tblCompanies" ToRole="tblRoles" />
+          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intCo__6EC0713C" FromRole="tblCompanies" ToRole="tblStockMain" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUsers__intCom__43D61337" FromRole="tblCompanies" ToRole="tblUsers" />
+          <NavigationProperty Name="tblLevel1" Relationship="POSModel.FK_tablLevel1_intCompanyId" FromRole="tblCompany" ToRole="tblLevel1" />
+          <NavigationProperty Name="tblWarehouses" Relationship="POSModel.FK_tblWarehouse_intCompanyId" FromRole="tblCompany" ToRole="tblWarehouse" />
+          <NavigationProperty Name="tblTransporters" Relationship="POSModel.FK_tblTransporter_intCompanyId" FromRole="tblCompany" ToRole="tblTransporter" />
+        </EntityType>
+        <EntityType Name="tblComponent">
+          <Key>
+            <PropertyRef Name="intComponentId" />
+          </Key>
+          <Property Name="intComponentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intModuleId" Type="Int32" />
+          <Property Name="varComponentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblModule" Relationship="Self.FK__tblCompon__intMo__4F47C5E3" FromRole="tblComponents" ToRole="tblModules" />
+          <NavigationProperty Name="tblFields" Relationship="Self.FK__tblFields__intCo__5224328E" FromRole="tblComponents" ToRole="tblFields" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intCo__56E8E7AB" FromRole="tblComponents" ToRole="tblPermissions" />
+        </EntityType>
+        <EntityType Name="tblField">
+          <Key>
+            <PropertyRef Name="intFieldId" />
+          </Key>
+          <Property Name="intFieldId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intComponentId" Type="Int32" />
+          <Property Name="varFieldName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblComponent" Relationship="Self.FK__tblFields__intCo__5224328E" FromRole="tblFields" ToRole="tblComponents" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intFi__57DD0BE4" FromRole="tblFields" ToRole="tblPermissions" />
+        </EntityType>
+        <EntityType Name="tblItem">
+          <Key>
+            <PropertyRef Name="intItemId" />
+          </Key>
+          <Property Name="intItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <Property Name="varItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dcOpenStock" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcMinLevel" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcMaxLevel" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcOrderLevel" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dtOpenDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="dcSellRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcPurRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcRetailSaleRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcDistributorSaleRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcDiscount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="isTaxable" Type="Boolean" />
+          <Property Name="isExpirable" Type="Boolean" />
+          <Property Name="varUom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dtExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblItems__intCom__681373AD" FromRole="tblItems" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intIt__74794A92" FromRole="tblItems" ToRole="tblStockDetail" />
+        </EntityType>
+        <EntityType Name="tblLevel1">
+          <Key>
+            <PropertyRef Name="intLevel1Id" />
+          </Key>
+          <Property Name="intLevel1Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="varLevel1Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblLevel2__intLe__5CA1C101" FromRole="tblLevel1" ToRole="tblLevel2" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__634EBE90" FromRole="tblLevel1" ToRole="tblParty" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <NavigationProperty Name="tblCompany" Relationship="POSModel.FK_tablLevel1_intCompanyId" FromRole="tblLevel1" ToRole="tblCompany" />
+        </EntityType>
+        <EntityType Name="tblLevel2">
+          <Key>
+            <PropertyRef Name="intLevel2Id" />
+          </Key>
+          <Property Name="intLevel2Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intLevel1Id" Type="Int32" />
+          <Property Name="varLevel2Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblLevel1" Relationship="Self.FK__tblLevel2__intLe__5CA1C101" FromRole="tblLevel2" ToRole="tblLevel1" />
+          <NavigationProperty Name="tblLevel3" Relationship="Self.FK__tblLevel3__intLe__5F7E2DAC" FromRole="tblLevel2" ToRole="tblLevel3" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__6442E2C9" FromRole="tblLevel2" ToRole="tblParty" />
+        </EntityType>
+        <EntityType Name="tblLevel3">
+          <Key>
+            <PropertyRef Name="intLevel3Id" />
+          </Key>
+          <Property Name="intLevel3Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intLevel2Id" Type="Int32" />
+          <Property Name="varLevel3Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblLevel3__intLe__5F7E2DAC" FromRole="tblLevel3" ToRole="tblLevel2" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__65370702" FromRole="tblLevel3" ToRole="tblParty" />
+        </EntityType>
+        <EntityType Name="tblModule">
+          <Key>
+            <PropertyRef Name="intModuleId" />
+          </Key>
+          <Property Name="intModuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="varModuleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblComponents" Relationship="Self.FK__tblCompon__intMo__4F47C5E3" FromRole="tblModules" ToRole="tblComponents" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intMo__55F4C372" FromRole="tblModules" ToRole="tblPermissions" />
+        </EntityType>
+        <EntityType Name="tblParty">
+          <Key>
+            <PropertyRef Name="intPartyId" />
+          </Key>
+          <Property Name="intPartyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <Property Name="varPartyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varPartyType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varContactNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varCountry" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="intLevel1Id" Type="Int32" />
+          <Property Name="intLevel2Id" Type="Int32" />
+          <Property Name="intLevel3Id" Type="Int32" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblParty__intCom__625A9A57" FromRole="tblParty" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblLevel1" Relationship="Self.FK__tblParty__intLev__634EBE90" FromRole="tblParty" ToRole="tblLevel1" />
+          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblParty__intLev__6442E2C9" FromRole="tblParty" ToRole="tblLevel2" />
+          <NavigationProperty Name="tblLevel3" Relationship="Self.FK__tblParty__intLev__65370702" FromRole="tblParty" ToRole="tblLevel3" />
+          <NavigationProperty Name="tblPledgers" Relationship="Self.FK__tblPledge__intPa__793DFFAF" FromRole="tblParty" ToRole="tblPledger" />
+          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intPa__6FB49575" FromRole="tblParty" ToRole="tblStockMain" />
+        </EntityType>
+        <EntityType Name="tblPermission">
+          <Key>
+            <PropertyRef Name="intPermissionId" />
+          </Key>
+          <Property Name="intPermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intRoleId" Type="Int32" />
+          <Property Name="intModuleId" Type="Int32" />
+          <Property Name="intComponentId" Type="Int32" />
+          <Property Name="intFieldId" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblComponent" Relationship="Self.FK__tblPermis__intCo__56E8E7AB" FromRole="tblPermissions" ToRole="tblComponents" />
+          <NavigationProperty Name="tblField" Relationship="Self.FK__tblPermis__intFi__57DD0BE4" FromRole="tblPermissions" ToRole="tblFields" />
+          <NavigationProperty Name="tblModule" Relationship="Self.FK__tblPermis__intMo__55F4C372" FromRole="tblPermissions" ToRole="tblModules" />
+          <NavigationProperty Name="tblRole" Relationship="Self.FK__tblPermis__intRo__55009F39" FromRole="tblPermissions" ToRole="tblRoles" />
+        </EntityType>
+        <EntityType Name="tblPledger">
+          <Key>
+            <PropertyRef Name="intPlid" />
+          </Key>
+          <Property Name="intPlid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <Property Name="intPartyId" Type="Int32" />
+          <Property Name="intDcno" Type="Int32" />
+          <Property Name="dtVrDate" Type="DateTime" Precision="3" />
+          <Property Name="varDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="varVrType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dcDebit" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="dcCredit" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblPledge__intCo__7849DB76" FromRole="tblPledger" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblParty" Relationship="Self.FK__tblPledge__intPa__793DFFAF" FromRole="tblPledger" ToRole="tblParty" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="intRoleId" />
+          </Key>
+          <Property Name="intRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <Property Name="varName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblRoles__intCom__46B27FE2" FromRole="tblRoles" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intRo__55009F39" FromRole="tblRoles" ToRole="tblPermissions" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.tblUserRoles" FromRole="tblRoles" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblStockDetail">
+          <Key>
+            <PropertyRef Name="intStockDetailId" />
+          </Key>
+          <Property Name="intStockDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intStid" Type="Int32" />
+          <Property Name="intItemId" Type="Int32" />
+          <Property Name="intWarehouseId" Type="Int32" />
+          <Property Name="intQuantity" Type="Int32" />
+          <Property Name="dcRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcAmount" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="dcDisc" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcDiscAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcExclTaxAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcTax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcTaxAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcInclTaxAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="varType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dcPurRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblItem" Relationship="Self.FK__tblStockD__intIt__74794A92" FromRole="tblStockDetail" ToRole="tblItems" />
+          <NavigationProperty Name="tblStockMain" Relationship="Self.FK__tblStockD__intSt__73852659" FromRole="tblStockDetail" ToRole="tblStockMain" />
+          <NavigationProperty Name="tblWarehouse" Relationship="Self.FK__tblStockD__intWa__756D6ECB" FromRole="tblStockDetail" ToRole="tblWarehouse" />
+        </EntityType>
+        <EntityType Name="tblStockMain">
+          <Key>
+            <PropertyRef Name="intStid" />
+          </Key>
+          <Property Name="intStid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <Property Name="intPartyId" Type="Int32" />
+          <Property Name="intVrno" Type="Int32" />
+          <Property Name="intVrnoA" Type="Int32" />
+          <Property Name="dtVrDate" Type="DateTime" Precision="3" />
+          <Property Name="varRemarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="intTransporterId" Type="Int32" />
+          <Property Name="varVrType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dcDiscount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcDiscountAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcExpense" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcAdditionalCharges" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dcNetAmount" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblStockM__intCo__6EC0713C" FromRole="tblStockMain" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblParty" Relationship="Self.FK__tblStockM__intPa__6FB49575" FromRole="tblStockMain" ToRole="tblParty" />
+          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intSt__73852659" FromRole="tblStockMain" ToRole="tblStockDetail" />
+          <NavigationProperty Name="tblTransporter" Relationship="Self.FK__tblStockM__intTr__70A8B9AE" FromRole="tblStockMain" ToRole="tblTransporter" />
+        </EntityType>
+        <EntityType Name="tblTransporter">
+          <Key>
+            <PropertyRef Name="intTransporterId" />
+          </Key>
+          <Property Name="intTransporterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="varTransporterName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varContactNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intTr__70A8B9AE" FromRole="tblTransporter" ToRole="tblStockMain" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <NavigationProperty Name="tblCompany" Relationship="POSModel.FK_tblTransporter_intCompanyId" FromRole="tblTransporter" ToRole="tblCompany" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="intUserId" />
+          </Key>
+          <Property Name="intUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <Property Name="varName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varCnic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="varContactNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <Property Name="varPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblUsers__intCom__43D61337" FromRole="tblUsers" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblRoles" Relationship="Self.tblUserRoles" FromRole="tblUsers" ToRole="tblRoles" />
+        </EntityType>
+        <EntityType Name="tblWarehouse">
+          <Key>
+            <PropertyRef Name="intWarehouseId" />
+          </Key>
+          <Property Name="intWarehouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="varWarehouseName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intWa__756D6ECB" FromRole="tblWarehouse" ToRole="tblStockDetail" />
+          <Property Name="intCompanyId" Type="Int32" />
+          <NavigationProperty Name="tblCompany" Relationship="POSModel.FK_tblWarehouse_intCompanyId" FromRole="tblWarehouse" ToRole="tblCompany" />
+        </EntityType>
+        <Association Name="FK__tblItems__intCom__681373AD">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblItems" Type="Self.tblItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblItems">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intCom__625A9A57">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPledge__intCo__7849DB76">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblPledger">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRoles__intCom__46B27FE2">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblRoles" Type="Self.tblRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblRoles">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockM__intCo__6EC0713C">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblStockMain">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsers__intCom__43D61337">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCompon__intMo__4F47C5E3">
+          <End Role="tblModules" Type="Self.tblModule" Multiplicity="0..1" />
+          <End Role="tblComponents" Type="Self.tblComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModules">
+              <PropertyRef Name="intModuleId" />
+            </Principal>
+            <Dependent Role="tblComponents">
+              <PropertyRef Name="intModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFields__intCo__5224328E">
+          <End Role="tblComponents" Type="Self.tblComponent" Multiplicity="0..1" />
+          <End Role="tblFields" Type="Self.tblField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComponents">
+              <PropertyRef Name="intComponentId" />
+            </Principal>
+            <Dependent Role="tblFields">
+              <PropertyRef Name="intComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intCo__56E8E7AB">
+          <End Role="tblComponents" Type="Self.tblComponent" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComponents">
+              <PropertyRef Name="intComponentId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intFi__57DD0BE4">
+          <End Role="tblFields" Type="Self.tblField" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFields">
+              <PropertyRef Name="intFieldId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockD__intIt__74794A92">
+          <End Role="tblItems" Type="Self.tblItem" Multiplicity="0..1" />
+          <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItems">
+              <PropertyRef Name="intItemId" />
+            </Principal>
+            <Dependent Role="tblStockDetail">
+              <PropertyRef Name="intItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLevel2__intLe__5CA1C101">
+          <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
+          <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel1">
+              <PropertyRef Name="intLevel1Id" />
+            </Principal>
+            <Dependent Role="tblLevel2">
+              <PropertyRef Name="intLevel1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intLev__634EBE90">
+          <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel1">
+              <PropertyRef Name="intLevel1Id" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intLevel1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLevel3__intLe__5F7E2DAC">
+          <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
+          <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel2">
+              <PropertyRef Name="intLevel2Id" />
+            </Principal>
+            <Dependent Role="tblLevel3">
+              <PropertyRef Name="intLevel2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intLev__6442E2C9">
+          <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel2">
+              <PropertyRef Name="intLevel2Id" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intLevel2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblParty__intLev__65370702">
+          <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="0..1" />
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevel3">
+              <PropertyRef Name="intLevel3Id" />
+            </Principal>
+            <Dependent Role="tblParty">
+              <PropertyRef Name="intLevel3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intMo__55F4C372">
+          <End Role="tblModules" Type="Self.tblModule" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModules">
+              <PropertyRef Name="intModuleId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPledge__intPa__793DFFAF">
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
+          <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblParty">
+              <PropertyRef Name="intPartyId" />
+            </Principal>
+            <Dependent Role="tblPledger">
+              <PropertyRef Name="intPartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockM__intPa__6FB49575">
+          <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblParty">
+              <PropertyRef Name="intPartyId" />
+            </Principal>
+            <Dependent Role="tblStockMain">
+              <PropertyRef Name="intPartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__intRo__55009F39">
+          <End Role="tblRoles" Type="Self.tblRole" Multiplicity="0..1" />
+          <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="intRoleId" />
+            </Principal>
+            <Dependent Role="tblPermissions">
+              <PropertyRef Name="intRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockD__intSt__73852659">
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="0..1" />
+          <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStockMain">
+              <PropertyRef Name="intStid" />
+            </Principal>
+            <Dependent Role="tblStockDetail">
+              <PropertyRef Name="intStid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockD__intWa__756D6ECB">
+          <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="0..1" />
+          <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWarehouse">
+              <PropertyRef Name="intWarehouseId" />
+            </Principal>
+            <Dependent Role="tblStockDetail">
+              <PropertyRef Name="intWarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblStockM__intTr__70A8B9AE">
+          <End Role="tblTransporter" Type="Self.tblTransporter" Multiplicity="0..1" />
+          <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTransporter">
+              <PropertyRef Name="intTransporterId" />
+            </Principal>
+            <Dependent Role="tblStockMain">
+              <PropertyRef Name="intTransporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblUserRoles">
+          <End Role="tblRoles" Type="Self.tblRole" Multiplicity="*" />
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="POSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCompanies" EntityType="Self.tblCompany" />
+          <EntitySet Name="tblComponents" EntityType="Self.tblComponent" />
+          <EntitySet Name="tblFields" EntityType="Self.tblField" />
+          <EntitySet Name="tblItems" EntityType="Self.tblItem" />
+          <EntitySet Name="tblLevel1" EntityType="Self.tblLevel1" />
+          <EntitySet Name="tblLevel2" EntityType="Self.tblLevel2" />
+          <EntitySet Name="tblLevel3" EntityType="Self.tblLevel3" />
+          <EntitySet Name="tblModules" EntityType="Self.tblModule" />
+          <EntitySet Name="tblParties" EntityType="Self.tblParty" />
+          <EntitySet Name="tblPermissions" EntityType="Self.tblPermission" />
+          <EntitySet Name="tblPledgers" EntityType="Self.tblPledger" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
+          <EntitySet Name="tblStockDetails" EntityType="Self.tblStockDetail" />
+          <EntitySet Name="tblStockMains" EntityType="Self.tblStockMain" />
+          <EntitySet Name="tblTransporters" EntityType="Self.tblTransporter" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblWarehouses" EntityType="Self.tblWarehouse" />
+          <AssociationSet Name="FK__tblItems__intCom__681373AD" Association="Self.FK__tblItems__intCom__681373AD">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblItems" EntitySet="tblItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intCom__625A9A57" Association="Self.FK__tblParty__intCom__625A9A57">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblParty" EntitySet="tblParties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPledge__intCo__7849DB76" Association="Self.FK__tblPledge__intCo__7849DB76">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblPledger" EntitySet="tblPledgers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRoles__intCom__46B27FE2" Association="Self.FK__tblRoles__intCom__46B27FE2">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblRoles" EntitySet="tblRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockM__intCo__6EC0713C" Association="Self.FK__tblStockM__intCo__6EC0713C">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblStockMain" EntitySet="tblStockMains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsers__intCom__43D61337" Association="Self.FK__tblUsers__intCom__43D61337">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCompon__intMo__4F47C5E3" Association="Self.FK__tblCompon__intMo__4F47C5E3">
+            <End Role="tblModules" EntitySet="tblModules" />
+            <End Role="tblComponents" EntitySet="tblComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFields__intCo__5224328E" Association="Self.FK__tblFields__intCo__5224328E">
+            <End Role="tblComponents" EntitySet="tblComponents" />
+            <End Role="tblFields" EntitySet="tblFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intCo__56E8E7AB" Association="Self.FK__tblPermis__intCo__56E8E7AB">
+            <End Role="tblComponents" EntitySet="tblComponents" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intFi__57DD0BE4" Association="Self.FK__tblPermis__intFi__57DD0BE4">
+            <End Role="tblFields" EntitySet="tblFields" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockD__intIt__74794A92" Association="Self.FK__tblStockD__intIt__74794A92">
+            <End Role="tblItems" EntitySet="tblItems" />
+            <End Role="tblStockDetail" EntitySet="tblStockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLevel2__intLe__5CA1C101" Association="Self.FK__tblLevel2__intLe__5CA1C101">
+            <End Role="tblLevel1" EntitySet="tblLevel1" />
+            <End Role="tblLevel2" EntitySet="tblLevel2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intLev__634EBE90" Association="Self.FK__tblParty__intLev__634EBE90">
+            <End Role="tblLevel1" EntitySet="tblLevel1" />
+            <End Role="tblParty" EntitySet="tblParties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLevel3__intLe__5F7E2DAC" Association="Self.FK__tblLevel3__intLe__5F7E2DAC">
+            <End Role="tblLevel2" EntitySet="tblLevel2" />
+            <End Role="tblLevel3" EntitySet="tblLevel3" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intLev__6442E2C9" Association="Self.FK__tblParty__intLev__6442E2C9">
+            <End Role="tblLevel2" EntitySet="tblLevel2" />
+            <End Role="tblParty" EntitySet="tblParties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblParty__intLev__65370702" Association="Self.FK__tblParty__intLev__65370702">
+            <End Role="tblLevel3" EntitySet="tblLevel3" />
+            <End Role="tblParty" EntitySet="tblParties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intMo__55F4C372" Association="Self.FK__tblPermis__intMo__55F4C372">
+            <End Role="tblModules" EntitySet="tblModules" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPledge__intPa__793DFFAF" Association="Self.FK__tblPledge__intPa__793DFFAF">
+            <End Role="tblParty" EntitySet="tblParties" />
+            <End Role="tblPledger" EntitySet="tblPledgers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockM__intPa__6FB49575" Association="Self.FK__tblStockM__intPa__6FB49575">
+            <End Role="tblParty" EntitySet="tblParties" />
+            <End Role="tblStockMain" EntitySet="tblStockMains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__intRo__55009F39" Association="Self.FK__tblPermis__intRo__55009F39">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblPermissions" EntitySet="tblPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockD__intSt__73852659" Association="Self.FK__tblStockD__intSt__73852659">
+            <End Role="tblStockMain" EntitySet="tblStockMains" />
+            <End Role="tblStockDetail" EntitySet="tblStockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockD__intWa__756D6ECB" Association="Self.FK__tblStockD__intWa__756D6ECB">
+            <End Role="tblWarehouse" EntitySet="tblWarehouses" />
+            <End Role="tblStockDetail" EntitySet="tblStockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblStockM__intTr__70A8B9AE" Association="Self.FK__tblStockM__intTr__70A8B9AE">
+            <End Role="tblTransporter" EntitySet="tblTransporters" />
+            <End Role="tblStockMain" EntitySet="tblStockMains" />
+          </AssociationSet>
+          <AssociationSet Name="tblUserRoles" Association="Self.tblUserRoles">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tablLevel1_intCompanyId" Association="POSModel.FK_tablLevel1_intCompanyId">
+            <End Role="tblCompany" EntitySet="tblCompanies" />
+            <End Role="tblLevel1" EntitySet="tblLevel1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWarehouse_intCompanyId" Association="POSModel.FK_tblWarehouse_intCompanyId">
+            <End Role="tblCompany" EntitySet="tblCompanies" />
+            <End Role="tblWarehouse" EntitySet="tblWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransporter_intCompanyId" Association="POSModel.FK_tblTransporter_intCompanyId">
+            <End Role="tblCompany" EntitySet="tblCompanies" />
+            <End Role="tblTransporter" EntitySet="tblTransporters" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tablLevel1_intCompanyId">
+          <End Type="POSModel.tblCompany" Role="tblCompany" Multiplicity="0..1" />
+          <End Type="POSModel.tblLevel1" Role="tblLevel1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompany">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblLevel1">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWarehouse_intCompanyId">
+          <End Type="POSModel.tblCompany" Role="tblCompany" Multiplicity="0..1" />
+          <End Type="POSModel.tblWarehouse" Role="tblWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompany">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblWarehouse">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransporter_intCompanyId">
+          <End Type="POSModel.tblCompany" Role="tblCompany" Multiplicity="0..1" />
+          <End Type="POSModel.tblTransporter" Role="tblTransporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompany">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblTransporter">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="POSModelStoreContainer" CdmEntityContainer="POSEntities">
+          <EntitySetMapping Name="tblCompanies">
+            <EntityTypeMapping TypeName="POSModel.tblCompany">
+              <MappingFragment StoreEntitySet="tblCompanies">
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="varCompanyName" ColumnName="varCompanyName" />
+                <ScalarProperty Name="varCompanyAddress" ColumnName="varCompanyAddress" />
+                <ScalarProperty Name="varContactEmail" ColumnName="varContactEmail" />
+                <ScalarProperty Name="varContactNo" ColumnName="varContactNo" />
+                <ScalarProperty Name="varCompanyLogo" ColumnName="varCompanyLogo" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblComponents">
+            <EntityTypeMapping TypeName="POSModel.tblComponent">
+              <MappingFragment StoreEntitySet="tblComponents">
+                <ScalarProperty Name="intComponentId" ColumnName="intComponentId" />
+                <ScalarProperty Name="intModuleId" ColumnName="intModuleId" />
+                <ScalarProperty Name="varComponentName" ColumnName="varComponentName" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFields">
+            <EntityTypeMapping TypeName="POSModel.tblField">
+              <MappingFragment StoreEntitySet="tblFields">
+                <ScalarProperty Name="intFieldId" ColumnName="intFieldId" />
+                <ScalarProperty Name="intComponentId" ColumnName="intComponentId" />
+                <ScalarProperty Name="varFieldName" ColumnName="varFieldName" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblItems">
+            <EntityTypeMapping TypeName="POSModel.tblItem">
+              <MappingFragment StoreEntitySet="tblItems">
+                <ScalarProperty Name="intItemId" ColumnName="intItemId" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="varItemName" ColumnName="varItemName" />
+                <ScalarProperty Name="dcOpenStock" ColumnName="dcOpenStock" />
+                <ScalarProperty Name="dcMinLevel" ColumnName="dcMinLevel" />
+                <ScalarProperty Name="dcMaxLevel" ColumnName="dcMaxLevel" />
+                <ScalarProperty Name="dcOrderLevel" ColumnName="dcOrderLevel" />
+                <ScalarProperty Name="dtOpenDate" ColumnName="dtOpenDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="dcSellRate" ColumnName="dcSellRate" />
+                <ScalarProperty Name="dcPurRate" ColumnName="dcPurRate" />
+                <ScalarProperty Name="dcRetailSaleRate" ColumnName="dcRetailSaleRate" />
+                <ScalarProperty Name="dcDistributorSaleRate" ColumnName="dcDistributorSaleRate" />
+                <ScalarProperty Name="dcDiscount" ColumnName="dcDiscount" />
+                <ScalarProperty Name="isTaxable" ColumnName="isTaxable" />
+                <ScalarProperty Name="isExpirable" ColumnName="isExpirable" />
+                <ScalarProperty Name="varUom" ColumnName="varUom" />
+                <ScalarProperty Name="dtExpiryDate" ColumnName="dtExpiryDate" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLevel1">
+            <EntityTypeMapping TypeName="POSModel.tblLevel1">
+              <MappingFragment StoreEntitySet="tblLevel1">
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="intLevel1Id" ColumnName="intLevel1Id" />
+                <ScalarProperty Name="varLevel1Name" ColumnName="varLevel1Name" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLevel2">
+            <EntityTypeMapping TypeName="POSModel.tblLevel2">
+              <MappingFragment StoreEntitySet="tblLevel2">
+                <ScalarProperty Name="intLevel2Id" ColumnName="intLevel2Id" />
+                <ScalarProperty Name="intLevel1Id" ColumnName="intLevel1Id" />
+                <ScalarProperty Name="varLevel2Name" ColumnName="varLevel2Name" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLevel3">
+            <EntityTypeMapping TypeName="POSModel.tblLevel3">
+              <MappingFragment StoreEntitySet="tblLevel3">
+                <ScalarProperty Name="intLevel3Id" ColumnName="intLevel3Id" />
+                <ScalarProperty Name="intLevel2Id" ColumnName="intLevel2Id" />
+                <ScalarProperty Name="varLevel3Name" ColumnName="varLevel3Name" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblModules">
+            <EntityTypeMapping TypeName="POSModel.tblModule">
+              <MappingFragment StoreEntitySet="tblModules">
+                <ScalarProperty Name="intModuleId" ColumnName="intModuleId" />
+                <ScalarProperty Name="varModuleName" ColumnName="varModuleName" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblParties">
+            <EntityTypeMapping TypeName="POSModel.tblParty">
+              <MappingFragment StoreEntitySet="tblParty">
+                <ScalarProperty Name="intPartyId" ColumnName="intPartyId" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="varPartyName" ColumnName="varPartyName" />
+                <ScalarProperty Name="varPartyType" ColumnName="varPartyType" />
+                <ScalarProperty Name="varAddress" ColumnName="varAddress" />
+                <ScalarProperty Name="varContactNo" ColumnName="varContactNo" />
+                <ScalarProperty Name="varCity" ColumnName="varCity" />
+                <ScalarProperty Name="varCountry" ColumnName="varCountry" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="intLevel1Id" ColumnName="intLevel1Id" />
+                <ScalarProperty Name="intLevel2Id" ColumnName="intLevel2Id" />
+                <ScalarProperty Name="intLevel3Id" ColumnName="intLevel3Id" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPermissions">
+            <EntityTypeMapping TypeName="POSModel.tblPermission">
+              <MappingFragment StoreEntitySet="tblPermissions">
+                <ScalarProperty Name="intPermissionId" ColumnName="intPermissionId" />
+                <ScalarProperty Name="intRoleId" ColumnName="intRoleId" />
+                <ScalarProperty Name="intModuleId" ColumnName="intModuleId" />
+                <ScalarProperty Name="intComponentId" ColumnName="intComponentId" />
+                <ScalarProperty Name="intFieldId" ColumnName="intFieldId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPledgers">
+            <EntityTypeMapping TypeName="POSModel.tblPledger">
+              <MappingFragment StoreEntitySet="tblPledger">
+                <ScalarProperty Name="intPlid" ColumnName="intPlid" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="intPartyId" ColumnName="intPartyId" />
+                <ScalarProperty Name="intDcno" ColumnName="intDcno" />
+                <ScalarProperty Name="dtVrDate" ColumnName="dtVrDate" />
+                <ScalarProperty Name="varDescription" ColumnName="varDescription" />
+                <ScalarProperty Name="varVrType" ColumnName="varVrType" />
+                <ScalarProperty Name="dcDebit" ColumnName="dcDebit" />
+                <ScalarProperty Name="dcCredit" ColumnName="dcCredit" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="POSModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRoles">
+                <ScalarProperty Name="intRoleId" ColumnName="intRoleId" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="varName" ColumnName="varName" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStockDetails">
+            <EntityTypeMapping TypeName="POSModel.tblStockDetail">
+              <MappingFragment StoreEntitySet="tblStockDetail">
+                <ScalarProperty Name="intStockDetailId" ColumnName="intStockDetailId" />
+                <ScalarProperty Name="intStid" ColumnName="intStid" />
+                <ScalarProperty Name="intItemId" ColumnName="intItemId" />
+                <ScalarProperty Name="intWarehouseId" ColumnName="intWarehouseId" />
+                <ScalarProperty Name="intQuantity" ColumnName="intQuantity" />
+                <ScalarProperty Name="dcRate" ColumnName="dcRate" />
+                <ScalarProperty Name="dcAmount" ColumnName="dcAmount" />
+                <ScalarProperty Name="dcDisc" ColumnName="dcDisc" />
+                <ScalarProperty Name="dcDiscAmount" ColumnName="dcDiscAmount" />
+                <ScalarProperty Name="dcExclTaxAmount" ColumnName="dcExclTaxAmount" />
+                <ScalarProperty Name="dcTax" ColumnName="dcTax" />
+                <ScalarProperty Name="dcTaxAmount" ColumnName="dcTaxAmount" />
+                <ScalarProperty Name="dcInclTaxAmount" ColumnName="dcInclTaxAmount" />
+                <ScalarProperty Name="varType" ColumnName="varType" />
+                <ScalarProperty Name="dcPurRate" ColumnName="dcPurRate" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStockMains">
+            <EntityTypeMapping TypeName="POSModel.tblStockMain">
+              <MappingFragment StoreEntitySet="tblStockMain">
+                <ScalarProperty Name="intStid" ColumnName="intStid" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="intPartyId" ColumnName="intPartyId" />
+                <ScalarProperty Name="intVrno" ColumnName="intVrno" />
+                <ScalarProperty Name="intVrnoA" ColumnName="intVrnoA" />
+                <ScalarProperty Name="dtVrDate" ColumnName="dtVrDate" />
+                <ScalarProperty Name="varRemarks" ColumnName="varRemarks" />
+                <ScalarProperty Name="intTransporterId" ColumnName="intTransporterId" />
+                <ScalarProperty Name="varVrType" ColumnName="varVrType" />
+                <ScalarProperty Name="dcDiscount" ColumnName="dcDiscount" />
+                <ScalarProperty Name="dcDiscountAmount" ColumnName="dcDiscountAmount" />
+                <ScalarProperty Name="dcExpense" ColumnName="dcExpense" />
+                <ScalarProperty Name="dcAdditionalCharges" ColumnName="dcAdditionalCharges" />
+                <ScalarProperty Name="dcNetAmount" ColumnName="dcNetAmount" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTransporters">
+            <EntityTypeMapping TypeName="POSModel.tblTransporter">
+              <MappingFragment StoreEntitySet="tblTransporter">
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="intTransporterId" ColumnName="intTransporterId" />
+                <ScalarProperty Name="varTransporterName" ColumnName="varTransporterName" />
+                <ScalarProperty Name="varContactNo" ColumnName="varContactNo" />
+                <ScalarProperty Name="varAddress" ColumnName="varAddress" />
+                <ScalarProperty Name="varEmail" ColumnName="varEmail" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="POSModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="intUserId" ColumnName="intUserId" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="varName" ColumnName="varName" />
+                <ScalarProperty Name="varEmail" ColumnName="varEmail" />
+                <ScalarProperty Name="varPassword" ColumnName="varPassword" />
+                <ScalarProperty Name="varAddress" ColumnName="varAddress" />
+                <ScalarProperty Name="varCnic" ColumnName="varCnic" />
+                <ScalarProperty Name="varContactNo" ColumnName="varContactNo" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="varPhoto" ColumnName="varPhoto" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWarehouses">
+            <EntityTypeMapping TypeName="POSModel.tblWarehouse">
+              <MappingFragment StoreEntitySet="tblWarehouse">
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
+                <ScalarProperty Name="intWarehouseId" ColumnName="intWarehouseId" />
+                <ScalarProperty Name="varWarehouseName" ColumnName="varWarehouseName" />
+                <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
+                <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblUserRoles" TypeName="POSModel.tblUserRoles" StoreEntitySet="tblUserRoles">
+            <EndProperty Name="tblRoles">
+              <ScalarProperty Name="intRoleId" ColumnName="intRoleId" />
+            </EndProperty>
+            <EndProperty Name="tblUsers">
+              <ScalarProperty Name="intUserId" ColumnName="intUserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
