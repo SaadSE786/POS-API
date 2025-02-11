@@ -40,6 +40,8 @@ namespace POS_API.Models
         public Nullable<System.DateTime> dtExpiryDate { get; set; }
         public Nullable<System.DateTime> dtCreationDate { get; set; }
         public Nullable<System.DateTime> dtUpdationDate { get; set; }
+        public Nullable<int> intCreatedBy { get; set; }
+        public Nullable<int> intUpdatedBy { get; set; }
     
         public virtual tblCompany tblCompany { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
