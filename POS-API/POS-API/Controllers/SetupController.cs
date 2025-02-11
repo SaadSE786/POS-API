@@ -356,5 +356,439 @@ namespace POS_API.Controllers
             }
         }
         #endregion
+        #region Item
+        [HttpPost,Route("addItem")]
+        public HttpResponseMessage AddItem([FromBody] Item item)
+        {
+            if (item != null)
+            {
+                try
+                {
+                    tblItem tblItem = new tblItem();
+                    tblItem.varItemName = item.varItemName;
+                    tblItem.dcOrderLevel = item.dcOrderLevel;
+                    tblItem.dcMinLevel = item.dcMinLevel;
+                    tblItem.dcMaxLevel = item.dcMaxLevel;
+                    tblItem.dcOpenStock = item.dcOpenStock;
+                    tblItem.dtOpenDate = item.dtOpenDate;
+                    tblItem.dcPurRate = item.dcPurRate;
+                    tblItem.dcSellRate = item.dcSellRate;
+                    tblItem.dcRetailSaleRate = item.dcRetailSaleRate;
+                    tblItem.dcDistributorSaleRate = item.dcDistributorSaleRate;
+                    tblItem.dcDiscount = item.dcDiscount;
+                    tblItem.isActive = item.isActive;
+                    tblItem.isTaxable = item.isTaxable;
+                    tblItem.isExpirable = item.isExpirable;
+                    tblItem.dtExpiryDate = item.dtExpiryDate;
+                    tblItem.varUom = item.varUom;
+                    tblItem.intCompanyId = item.intCompanyId;
+                    tblItem.intCreatedBy = item.intCreatedBy;
+                    tblItem.dtCreationDate = DateTime.Now;
+                    db.tblItems.Add(tblItem);
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+                }
+                catch (Exception ex)
+                {
+                    
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { status = 500, message = "Internal Server Error" });
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { status = 400, message = "Bad Request" });
+            }
+        }
+        [HttpGet, Route("getItems")]
+        public HttpResponseMessage GetItems()
+        {
+            try
+            {
+                var itemList = db.tblItems.Select(i => new Item
+                {
+                    intItemId = i.intItemId,
+                    varItemName = i.varItemName,
+                    dcOrderLevel = i.dcOrderLevel,
+                    dcMinLevel = i.dcMinLevel,
+                    dcMaxLevel = i.dcMaxLevel,
+                    dcOpenStock = i.dcOpenStock,
+                    dtOpenDate = i.dtOpenDate,
+                    dcPurRate = i.dcPurRate,
+                    dcSellRate = i.dcSellRate,
+                    dcRetailSaleRate = i.dcRetailSaleRate,
+                    dcDistributorSaleRate = i.dcDistributorSaleRate,
+                    dcDiscount = i.dcDiscount,
+                    isActive = i.isActive,
+                    isTaxable = i.isTaxable,
+                    isExpirable = i.isExpirable,
+                    dtExpiryDate = i.dtExpiryDate,
+                    varUom = i.varUom,
+                    intCompanyId = i.intCompanyId,
+                    intCreatedBy = i.intCreatedBy,
+                    dtCreationDate = i.dtCreationDate,
+                    dtUpdationDate = i.dtUpdationDate
+                }).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success", items = itemList });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpPut, Route("updateItem")]
+        public HttpResponseMessage UpdateItem([FromBody] Item item)
+        {
+            try
+            {
+                tblItem tblItem = db.tblItems.Find(item.intItemId);
+                if (tblItem == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not found" });
+                }
+                tblItem.varItemName = item.varItemName;
+                tblItem.dcOrderLevel = item.dcOrderLevel;
+                tblItem.dcMinLevel = item.dcMinLevel;
+                tblItem.dcMaxLevel = item.dcMaxLevel;
+                tblItem.dcOpenStock = item.dcOpenStock;
+                tblItem.dtOpenDate = item.dtOpenDate;
+                tblItem.dcPurRate = item.dcPurRate;
+                tblItem.dcSellRate = item.dcSellRate;
+                tblItem.dcRetailSaleRate = item.dcRetailSaleRate;
+                tblItem.dcDistributorSaleRate = item.dcDistributorSaleRate;
+                tblItem.dcDiscount = item.dcDiscount;
+                tblItem.isActive = item.isActive;
+                tblItem.isTaxable = item.isTaxable;
+                tblItem.isExpirable = item.isExpirable;
+                tblItem.dtExpiryDate = item.dtExpiryDate;
+                tblItem.varUom = item.varUom;
+                tblItem.intCompanyId = item.intCompanyId;
+                tblItem.intUpdatedBy = item.intUpdatedBy;
+                tblItem.dtUpdationDate = DateTime.Now;
+                db.Entry(tblItem).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpDelete, Route("deleteItem/{id}")]
+        public HttpResponseMessage DeleteItem(int id)
+        {
+            try
+            {
+                tblItem item = db.tblItems.Find(id);
+                if (item == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not found" });
+                }
+                db.tblItems.Remove(item);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpGet, Route("getItemById/{id}")]
+        public HttpResponseMessage GetItem(int id)
+        {
+            try
+            {
+                Item item = db.tblItems.Where(i => i.intItemId == id).Select(i => new Item
+                {
+                    intItemId = i.intItemId,
+                    varItemName = i.varItemName,
+                    dcOrderLevel = i.dcOrderLevel,
+                    dcMinLevel = i.dcMinLevel,
+                    dcMaxLevel = i.dcMaxLevel,
+                    dcOpenStock = i.dcOpenStock,
+                    dtOpenDate = i.dtOpenDate,
+                    dcPurRate = i.dcPurRate,
+                    dcSellRate = i.dcSellRate,
+                    dcRetailSaleRate = i.dcRetailSaleRate,
+                    dcDistributorSaleRate = i.dcDistributorSaleRate,
+                    dcDiscount = i.dcDiscount,
+                    isActive = i.isActive,
+                    isTaxable = i.isTaxable,
+                    isExpirable = i.isExpirable,
+                    dtExpiryDate = i.dtExpiryDate,
+                    varUom = i.varUom,
+                    intCompanyId = i.intCompanyId,
+                    intCreatedBy = i.intCreatedBy,
+                    dtCreationDate = i.dtCreationDate,
+                    dtUpdationDate = i.dtUpdationDate
+                }).FirstOrDefault();
+                return Request.CreateResponse(HttpStatusCode.OK, item);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        #endregion
+        #region Warehouse
+        [HttpPost, Route("addWarehouse")]
+        public HttpResponseMessage AddWarehouse([FromBody] Warehouse wrhouse)
+        {
+            if (wrhouse != null)
+            {
+                try
+                {
+                    tblWarehouse warehouse = new tblWarehouse();
+                    warehouse.varWarehouseName = wrhouse.varWarehouseName;
+                    warehouse.dtCreationDate = DateTime.Now;
+                    warehouse.intCreatedBy = wrhouse.intCreatedBy;
+                    warehouse.intCompanyId = wrhouse.intCompanyId;
+                    db.tblWarehouses.Add(warehouse);
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+                    //return Request.CreateResponse(HttpStatusCode.Unauthorized, new { status = 401, message = "Unauthorized" });
+
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { status = 500, message = "Internal Server Error" });
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { status = 400, message = "Bad Request" });
+
+            }
+        }
+
+        [HttpGet, Route("getWarehouse")]
+        public HttpResponseMessage GetWarehouse()
+        {
+            try
+            {
+                List<Warehouse> wrhouse = db.tblWarehouses.Select(l => new Warehouse
+                {
+                    intWarehouseId = l.intWarehouseId,
+                    varWarehouseName = l.varWarehouseName,
+                    intCreatedBy = l.intCreatedBy,
+                    intCompanyId = l.intCompanyId,
+                    dtCreationDate = l.dtCreationDate,
+                    dtUpdationDate = l.dtUpdationDate,
+                    intUpdatedBy = l.intUpdatedBy
+                }).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success", warehouses = wrhouse });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpPut, Route("updateWarehouse")]
+        public HttpResponseMessage UpdateWarehouse([FromBody] Warehouse wrhouse)
+        {
+            try
+            {
+                tblWarehouse warehouse = db.tblWarehouses.Find(wrhouse.intWarehouseId);
+                if (warehouse == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not found" });
+                }
+                warehouse.varWarehouseName = wrhouse.varWarehouseName;
+                warehouse.dtUpdationDate = DateTime.Now;
+                warehouse.intUpdatedBy = wrhouse.intUpdatedBy;
+                db.Entry(warehouse).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpDelete, Route("deleteWarehouse/{id}")]
+        public HttpResponseMessage DeleteWarehouse(int id)
+        {
+            try
+            {
+
+                tblWarehouse warehouse = db.tblWarehouses.Find(id);
+                if (warehouse == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not found" });
+                }
+                db.tblWarehouses.Remove(warehouse);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpGet, Route("getWarehouseById/{id}")]
+        public HttpResponseMessage GetWarehouseById(int id)
+        {
+            try
+            {
+                Warehouse warehouse = db.tblWarehouses.Where(i => i.intWarehouseId == id).Select(l => new Warehouse
+                {
+                    intWarehouseId = l.intWarehouseId,
+                    varWarehouseName = l.varWarehouseName,
+                    intCreatedBy = l.intCreatedBy,
+                    intCompanyId = l.intCompanyId,
+                    dtCreationDate = l.dtCreationDate,
+                    dtUpdationDate = l.dtUpdationDate
+                }).FirstOrDefault();
+                return Request.CreateResponse(HttpStatusCode.OK, warehouse);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        #endregion
+        #region Transporter
+        [HttpPost, Route("addTransporter")]
+        public HttpResponseMessage AddTransporter([FromBody] Transporter transporter)
+        {
+            if (transporter != null)
+            {
+                try
+                {
+                    tblTransporter tblTransporter = new tblTransporter();
+                    tblTransporter.varTransporterName = transporter.varTransporterName;
+                    tblTransporter.varContactNo = transporter.varContactNo;
+                    tblTransporter.varEmail = transporter.varEmail;
+                    tblTransporter.varAddress = transporter.varAddress;
+                    tblTransporter.dtCreationDate = DateTime.Now;
+                    tblTransporter.intCreatedBy = transporter.intCreatedBy;
+                    tblTransporter.intCompanyId = transporter.intCompanyId;
+                    db.tblTransporters.Add(tblTransporter);
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+                    //return Request.CreateResponse(HttpStatusCode.Unauthorized, new { status = 401, message = "Unauthorized" });
+
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { status = 500, message = "Internal Server Error" });
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { status = 400, message = "Bad Request" });
+
+            }
+        }
+
+        [HttpGet, Route("getTransporter")]
+        public HttpResponseMessage GetTransporter()
+        {
+            try
+            {
+                List<Transporter> transporters = db.tblTransporters.Select(l => new Transporter
+                {
+                    intTransporterId = l.intTransporterId,
+                    varTransporterName = l.varTransporterName,
+                    varContactNo = l.varContactNo,
+                    varEmail = l.varEmail,
+                    varAddress = l.varAddress,
+                    intCreatedBy = l.intCreatedBy,
+                    intCompanyId = l.intCompanyId,
+                    dtCreationDate = l.dtCreationDate,
+                    dtUpdationDate = l.dtUpdationDate,
+                    intUpdatedBy = l.intUpdatedBy
+                }).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success", transporter = transporters });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpPut, Route("updateTransporter")]
+        public HttpResponseMessage UpdateTransporter([FromBody] Transporter transporter)
+        {
+            try
+            {
+                tblTransporter tblTransporter = db.tblTransporters.Find(transporter.intTransporterId);
+                if (tblTransporter == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not found" });
+                }
+                tblTransporter.varTransporterName = transporter.varTransporterName;
+                tblTransporter.varContactNo = transporter.varContactNo;
+                tblTransporter.varEmail = transporter.varEmail;
+                tblTransporter.varAddress= transporter.varAddress;
+                tblTransporter.dtUpdationDate = DateTime.Now;
+                tblTransporter.intUpdatedBy = transporter.intUpdatedBy;
+                db.Entry(tblTransporter).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpDelete, Route("deleteTransporter/{id}")]
+        public HttpResponseMessage DeleteTransporter(int id)
+        {
+            try
+            {
+
+                tblTransporter transporter = db.tblTransporters.Find(id);
+                if (transporter == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not found" });
+                }
+                db.tblTransporters.Remove(transporter);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        [HttpGet, Route("getTransporterById/{id}")]
+        public HttpResponseMessage GetTransporterById(int id)
+        {
+            try
+            {
+                Transporter transporter = db.tblTransporters.Where(i => i.intTransporterId == id).Select(l => new Transporter
+                {
+                    intTransporterId = l.intTransporterId,
+                    varTransporterName = l.varTransporterName,
+                    varContactNo = l.varContactNo,
+                    varEmail = l.varEmail,
+                    varAddress = l.varAddress,
+                    intCreatedBy = l.intCreatedBy,
+                    intCompanyId = l.intCompanyId,
+                    dtCreationDate = l.dtCreationDate,
+                    dtUpdationDate = l.dtUpdationDate
+                }).FirstOrDefault();
+                return Request.CreateResponse(HttpStatusCode.OK, transporter);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        #endregion
     }
 }

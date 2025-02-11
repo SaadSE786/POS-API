@@ -22,10 +22,9 @@ namespace POS_API.Models
             this.tblPledgers = new HashSet<tblPledger>();
             this.tblRoles = new HashSet<tblRole>();
             this.tblStockMains = new HashSet<tblStockMain>();
-            this.tblUsers = new HashSet<tblUser>();
-            this.tblLevel1 = new HashSet<tblLevel1>();
-            this.tblWarehouses = new HashSet<tblWarehouse>();
             this.tblTransporters = new HashSet<tblTransporter>();
+            this.tblUsers = new HashSet<tblUser>();
+            this.tblWarehouses = new HashSet<tblWarehouse>();
         }
     
         public int intCompanyId { get; set; }
@@ -48,12 +47,10 @@ namespace POS_API.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblStockMain> tblStockMains { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTransporter> tblTransporters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUser> tblUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblLevel1> tblLevel1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWarehouse> tblWarehouses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTransporter> tblTransporters { get; set; }
     }
 }

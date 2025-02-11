@@ -192,80 +192,83 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="BusinessObjects\Company.cs" />
+    <Compile Include="BusinessObjects\Item.cs" />
     <Compile Include="BusinessObjects\Level1.cs" />
     <Compile Include="BusinessObjects\Level2.cs" />
     <Compile Include="BusinessObjects\Level3.cs" />
+    <Compile Include="BusinessObjects\Transporter.cs" />
+    <Compile Include="BusinessObjects\Warehouse.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\POS.Context.cs">
+    <Compile Include="Models\POSEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>POS.Context.tt</DependentUpon>
+      <DependentUpon>POSEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\POS.cs">
+    <Compile Include="Models\POSEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\POS.Designer.cs">
+    <Compile Include="Models\POSEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>POS.edmx</DependentUpon>
+      <DependentUpon>POSEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\tblCompany.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblComponent.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblField.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblItem.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblLevel1.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblLevel2.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblLevel3.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblModule.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblParty.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblPermission.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblPledger.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblRole.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblStockDetail.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblStockMain.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblTransporter.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblUser.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblWarehouse.cs">
-      <DependentUpon>POS.tt</DependentUpon>
+      <DependentUpon>POSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SQLService.cs" />
@@ -290,15 +293,15 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\POS.Context.tt">
+    <Content Include="Models\POSEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>POS.Context.cs</LastGenOutput>
-      <DependentUpon>POS.edmx</DependentUpon>
+      <DependentUpon>POSEntities.edmx</DependentUpon>
+      <LastGenOutput>POSEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\POS.tt">
+    <Content Include="Models\POSEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>POS.edmx</DependentUpon>
-      <LastGenOutput>POS.cs</LastGenOutput>
+      <DependentUpon>POSEntities.edmx</DependentUpon>
+      <LastGenOutput>POSEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -325,12 +328,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\POS.edmx">
+    <EntityDeploy Include="Models\POSEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>POS.Designer.cs</LastGenOutput>
+      <LastGenOutput>POSEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\POS.edmx.diagram">
-      <DependentUpon>POS.edmx</DependentUpon>
+    <Content Include="Models\POSEntities.edmx.diagram">
+      <DependentUpon>POSEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />

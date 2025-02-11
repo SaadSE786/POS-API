@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fc8eaaebc87c49b8871312438e7afafc" Name="Diagram1">
+        <EntityTypeShape EntityType="POSModel.tblCompany" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblComponent" Width="1.5" PointX="3" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblField" Width="1.5" PointX="3" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblItem" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblLevel1" Width="1.5" PointX="3.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblLevel2" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblLevel3" Width="1.5" PointX="3.75" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblModule" Width="1.5" PointX="0.75" PointY="38.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblParty" Width="1.5" PointX="6" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblPermission" Width="1.5" PointX="5.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblPledger" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblRole" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblStockDetail" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblStockMain" Width="1.5" PointX="11.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblTransporter" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblUser" Width="1.5" PointX="8.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSModel.tblWarehouse" Width="1.5" PointX="3" PointY="30.125" IsExpanded="true" />
+        <AssociationConnector Association="POSModel.FK__tblItems__intCom__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblParty__intCom__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblPledge__intCo__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblRoles__intCom__164452B1" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblStockM__intCo__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblTransp__intCo__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblUsers__intCom__1367E606" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblWareho__intCo__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblCompon__intMo__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblFields__intCo__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblPermis__intCo__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblPermis__intFi__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblStockD__intIt__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblLevel2__intLe__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblParty__intLev__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblLevel3__intLe__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblParty__intLev__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblParty__intLev__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblPermis__intMo__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblPledge__intPa__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblStockM__intPa__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblPermis__intRo__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblStockD__intSt__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblStockD__intWa__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.FK__tblStockM__intTr__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="POSModel.tblUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

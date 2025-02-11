@@ -31,8 +31,8 @@ namespace POS_API.Models
         public Nullable<int> intUpdatedBy { get; set; }
         public Nullable<int> intCompanyId { get; set; }
     
+        public virtual tblCompany tblCompany { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblStockMain> tblStockMains { get; set; }
-        public virtual tblCompany tblCompany { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="POSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="POSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblCompanies">
           <Key>
             <PropertyRef Name="intCompanyId" />
@@ -62,6 +62,8 @@
           <Property Name="dtExpiryDate" Type="datetime" />
           <Property Name="dtCreationDate" Type="datetime" />
           <Property Name="dtUpdationDate" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="intUpdatedBy" Type="int" />
         </EntityType>
         <EntityType Name="tblLevel1">
           <Key>
@@ -271,7 +273,7 @@
           <Property Name="intUpdatedBy" Type="int" />
           <Property Name="intCompanyId" Type="int" />
         </EntityType>
-        <Association Name="FK__tblCompon__intMo__4F47C5E3">
+        <Association Name="FK__tblCompon__intMo__1ED998B2">
           <End Role="tblModules" Type="Self.tblModules" Multiplicity="0..1" />
           <End Role="tblComponents" Type="Self.tblComponents" Multiplicity="*" />
           <ReferentialConstraint>
@@ -283,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblFields__intCo__5224328E">
+        <Association Name="FK__tblFields__intCo__21B6055D">
           <End Role="tblComponents" Type="Self.tblComponents" Multiplicity="0..1" />
           <End Role="tblFields" Type="Self.tblFields" Multiplicity="*" />
           <ReferentialConstraint>
@@ -295,7 +297,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblItems__intCom__681373AD">
+        <Association Name="FK__tblItems__intCom__37A5467C">
           <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
           <End Role="tblItems" Type="Self.tblItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -307,7 +309,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblLevel2__intLe__5CA1C101">
+        <Association Name="FK__tblLevel2__intLe__2C3393D0">
           <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
           <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="*" />
           <ReferentialConstraint>
@@ -319,7 +321,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblLevel3__intLe__5F7E2DAC">
+        <Association Name="FK__tblLevel3__intLe__2F10007B">
           <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
           <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="*" />
           <ReferentialConstraint>
@@ -331,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intCom__625A9A57">
+        <Association Name="FK__tblParty__intCom__31EC6D26">
           <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -343,7 +345,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intLev__634EBE90">
+        <Association Name="FK__tblParty__intLev__32E0915F">
           <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -355,7 +357,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intLev__6442E2C9">
+        <Association Name="FK__tblParty__intLev__33D4B598">
           <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -367,7 +369,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intLev__65370702">
+        <Association Name="FK__tblParty__intLev__34C8D9D1">
           <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -379,7 +381,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intCo__56E8E7AB">
+        <Association Name="FK__tblPermis__intCo__267ABA7A">
           <End Role="tblComponents" Type="Self.tblComponents" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -391,7 +393,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intFi__57DD0BE4">
+        <Association Name="FK__tblPermis__intFi__276EDEB3">
           <End Role="tblFields" Type="Self.tblFields" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -403,7 +405,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intMo__55F4C372">
+        <Association Name="FK__tblPermis__intMo__25869641">
           <End Role="tblModules" Type="Self.tblModules" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -415,7 +417,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intRo__55009F39">
+        <Association Name="FK__tblPermis__intRo__24927208">
           <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermissions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -427,7 +429,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPledge__intCo__7849DB76">
+        <Association Name="FK__tblPledge__intCo__47DBAE45">
           <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
           <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
           <ReferentialConstraint>
@@ -439,7 +441,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPledge__intPa__793DFFAF">
+        <Association Name="FK__tblPledge__intPa__48CFD27E">
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
           <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
           <ReferentialConstraint>
@@ -451,7 +453,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblRoles__intCom__46B27FE2">
+        <Association Name="FK__tblRoles__intCom__164452B1">
           <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
           <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -463,7 +465,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockD__intIt__74794A92">
+        <Association Name="FK__tblStockD__intIt__440B1D61">
           <End Role="tblItems" Type="Self.tblItems" Multiplicity="0..1" />
           <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -475,7 +477,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockD__intSt__73852659">
+        <Association Name="FK__tblStockD__intSt__4316F928">
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="0..1" />
           <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -487,7 +489,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockD__intWa__756D6ECB">
+        <Association Name="FK__tblStockD__intWa__44FF419A">
           <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="0..1" />
           <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -499,7 +501,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockM__intCo__6EC0713C">
+        <Association Name="FK__tblStockM__intCo__3E52440B">
           <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -511,7 +513,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockM__intPa__6FB49575">
+        <Association Name="FK__tblStockM__intPa__3F466844">
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -523,7 +525,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockM__intTr__70A8B9AE">
+        <Association Name="FK__tblStockM__intTr__403A8C7D">
           <End Role="tblTransporter" Type="Self.tblTransporter" Multiplicity="0..1" />
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -535,55 +537,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblUserRo__intRo__4A8310C6">
-          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="1" />
-          <End Role="tblUserRoles" Type="Self.tblUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblRoles">
-              <PropertyRef Name="intRoleId" />
-            </Principal>
-            <Dependent Role="tblUserRoles">
-              <PropertyRef Name="intRoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblUserRo__intUs__498EEC8D">
-          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
-          <End Role="tblUserRoles" Type="Self.tblUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUsers">
-              <PropertyRef Name="intUserId" />
-            </Principal>
-            <Dependent Role="tblUserRoles">
-              <PropertyRef Name="intUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblUsers__intCom__43D61337">
-          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
-          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCompanies">
-              <PropertyRef Name="intCompanyId" />
-            </Principal>
-            <Dependent Role="tblUsers">
-              <PropertyRef Name="intCompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tablLevel1_intCompanyId">
-          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
-          <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCompanies">
-              <PropertyRef Name="intCompanyId" />
-            </Principal>
-            <Dependent Role="tblLevel1">
-              <PropertyRef Name="intCompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTransporter_intCompanyId">
+        <Association Name="FK__tblTransp__intCo__5AEE82B9">
           <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
           <End Role="tblTransporter" Type="Self.tblTransporter" Multiplicity="*" />
           <ReferentialConstraint>
@@ -595,7 +549,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblWarehouse_intCompanyId">
+        <Association Name="FK__tblUserRo__intRo__1A14E395">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="1" />
+          <End Role="tblUserRoles" Type="Self.tblUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="intRoleId" />
+            </Principal>
+            <Dependent Role="tblUserRoles">
+              <PropertyRef Name="intRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserRo__intUs__1920BF5C">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUserRoles" Type="Self.tblUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="intUserId" />
+            </Principal>
+            <Dependent Role="tblUserRoles">
+              <PropertyRef Name="intUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsers__intCom__1367E606">
+          <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__intCo__5BE2A6F2">
           <End Role="tblCompanies" Type="Self.tblCompanies" Multiplicity="0..1" />
           <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="*" />
           <ReferentialConstraint>
@@ -626,120 +616,117 @@
           <EntitySet Name="tblUserRoles" EntityType="Self.tblUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblWarehouse" EntityType="Self.tblWarehouse" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__tblCompon__intMo__4F47C5E3" Association="Self.FK__tblCompon__intMo__4F47C5E3">
+          <AssociationSet Name="FK__tblCompon__intMo__1ED998B2" Association="Self.FK__tblCompon__intMo__1ED998B2">
             <End Role="tblModules" EntitySet="tblModules" />
             <End Role="tblComponents" EntitySet="tblComponents" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblFields__intCo__5224328E" Association="Self.FK__tblFields__intCo__5224328E">
+          <AssociationSet Name="FK__tblFields__intCo__21B6055D" Association="Self.FK__tblFields__intCo__21B6055D">
             <End Role="tblComponents" EntitySet="tblComponents" />
             <End Role="tblFields" EntitySet="tblFields" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblItems__intCom__681373AD" Association="Self.FK__tblItems__intCom__681373AD">
+          <AssociationSet Name="FK__tblItems__intCom__37A5467C" Association="Self.FK__tblItems__intCom__37A5467C">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblItems" EntitySet="tblItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblLevel2__intLe__5CA1C101" Association="Self.FK__tblLevel2__intLe__5CA1C101">
+          <AssociationSet Name="FK__tblLevel2__intLe__2C3393D0" Association="Self.FK__tblLevel2__intLe__2C3393D0">
             <End Role="tblLevel1" EntitySet="tblLevel1" />
             <End Role="tblLevel2" EntitySet="tblLevel2" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblLevel3__intLe__5F7E2DAC" Association="Self.FK__tblLevel3__intLe__5F7E2DAC">
+          <AssociationSet Name="FK__tblLevel3__intLe__2F10007B" Association="Self.FK__tblLevel3__intLe__2F10007B">
             <End Role="tblLevel2" EntitySet="tblLevel2" />
             <End Role="tblLevel3" EntitySet="tblLevel3" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intCom__625A9A57" Association="Self.FK__tblParty__intCom__625A9A57">
+          <AssociationSet Name="FK__tblParty__intCom__31EC6D26" Association="Self.FK__tblParty__intCom__31EC6D26">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblParty" EntitySet="tblParty" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intLev__634EBE90" Association="Self.FK__tblParty__intLev__634EBE90">
+          <AssociationSet Name="FK__tblParty__intLev__32E0915F" Association="Self.FK__tblParty__intLev__32E0915F">
             <End Role="tblLevel1" EntitySet="tblLevel1" />
             <End Role="tblParty" EntitySet="tblParty" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intLev__6442E2C9" Association="Self.FK__tblParty__intLev__6442E2C9">
+          <AssociationSet Name="FK__tblParty__intLev__33D4B598" Association="Self.FK__tblParty__intLev__33D4B598">
             <End Role="tblLevel2" EntitySet="tblLevel2" />
             <End Role="tblParty" EntitySet="tblParty" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intLev__65370702" Association="Self.FK__tblParty__intLev__65370702">
+          <AssociationSet Name="FK__tblParty__intLev__34C8D9D1" Association="Self.FK__tblParty__intLev__34C8D9D1">
             <End Role="tblLevel3" EntitySet="tblLevel3" />
             <End Role="tblParty" EntitySet="tblParty" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intCo__56E8E7AB" Association="Self.FK__tblPermis__intCo__56E8E7AB">
+          <AssociationSet Name="FK__tblPermis__intCo__267ABA7A" Association="Self.FK__tblPermis__intCo__267ABA7A">
             <End Role="tblComponents" EntitySet="tblComponents" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intFi__57DD0BE4" Association="Self.FK__tblPermis__intFi__57DD0BE4">
+          <AssociationSet Name="FK__tblPermis__intFi__276EDEB3" Association="Self.FK__tblPermis__intFi__276EDEB3">
             <End Role="tblFields" EntitySet="tblFields" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intMo__55F4C372" Association="Self.FK__tblPermis__intMo__55F4C372">
+          <AssociationSet Name="FK__tblPermis__intMo__25869641" Association="Self.FK__tblPermis__intMo__25869641">
             <End Role="tblModules" EntitySet="tblModules" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intRo__55009F39" Association="Self.FK__tblPermis__intRo__55009F39">
+          <AssociationSet Name="FK__tblPermis__intRo__24927208" Association="Self.FK__tblPermis__intRo__24927208">
             <End Role="tblRoles" EntitySet="tblRoles" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPledge__intCo__7849DB76" Association="Self.FK__tblPledge__intCo__7849DB76">
+          <AssociationSet Name="FK__tblPledge__intCo__47DBAE45" Association="Self.FK__tblPledge__intCo__47DBAE45">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblPledger" EntitySet="tblPledger" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPledge__intPa__793DFFAF" Association="Self.FK__tblPledge__intPa__793DFFAF">
+          <AssociationSet Name="FK__tblPledge__intPa__48CFD27E" Association="Self.FK__tblPledge__intPa__48CFD27E">
             <End Role="tblParty" EntitySet="tblParty" />
             <End Role="tblPledger" EntitySet="tblPledger" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblRoles__intCom__46B27FE2" Association="Self.FK__tblRoles__intCom__46B27FE2">
+          <AssociationSet Name="FK__tblRoles__intCom__164452B1" Association="Self.FK__tblRoles__intCom__164452B1">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblRoles" EntitySet="tblRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockD__intIt__74794A92" Association="Self.FK__tblStockD__intIt__74794A92">
+          <AssociationSet Name="FK__tblStockD__intIt__440B1D61" Association="Self.FK__tblStockD__intIt__440B1D61">
             <End Role="tblItems" EntitySet="tblItems" />
             <End Role="tblStockDetail" EntitySet="tblStockDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockD__intSt__73852659" Association="Self.FK__tblStockD__intSt__73852659">
+          <AssociationSet Name="FK__tblStockD__intSt__4316F928" Association="Self.FK__tblStockD__intSt__4316F928">
             <End Role="tblStockMain" EntitySet="tblStockMain" />
             <End Role="tblStockDetail" EntitySet="tblStockDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockD__intWa__756D6ECB" Association="Self.FK__tblStockD__intWa__756D6ECB">
+          <AssociationSet Name="FK__tblStockD__intWa__44FF419A" Association="Self.FK__tblStockD__intWa__44FF419A">
             <End Role="tblWarehouse" EntitySet="tblWarehouse" />
             <End Role="tblStockDetail" EntitySet="tblStockDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockM__intCo__6EC0713C" Association="Self.FK__tblStockM__intCo__6EC0713C">
+          <AssociationSet Name="FK__tblStockM__intCo__3E52440B" Association="Self.FK__tblStockM__intCo__3E52440B">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblStockMain" EntitySet="tblStockMain" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockM__intPa__6FB49575" Association="Self.FK__tblStockM__intPa__6FB49575">
+          <AssociationSet Name="FK__tblStockM__intPa__3F466844" Association="Self.FK__tblStockM__intPa__3F466844">
             <End Role="tblParty" EntitySet="tblParty" />
             <End Role="tblStockMain" EntitySet="tblStockMain" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockM__intTr__70A8B9AE" Association="Self.FK__tblStockM__intTr__70A8B9AE">
+          <AssociationSet Name="FK__tblStockM__intTr__403A8C7D" Association="Self.FK__tblStockM__intTr__403A8C7D">
             <End Role="tblTransporter" EntitySet="tblTransporter" />
             <End Role="tblStockMain" EntitySet="tblStockMain" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblUserRo__intRo__4A8310C6" Association="Self.FK__tblUserRo__intRo__4A8310C6">
-            <End Role="tblRoles" EntitySet="tblRoles" />
-            <End Role="tblUserRoles" EntitySet="tblUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblUserRo__intUs__498EEC8D" Association="Self.FK__tblUserRo__intUs__498EEC8D">
-            <End Role="tblUsers" EntitySet="tblUsers" />
-            <End Role="tblUserRoles" EntitySet="tblUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblUsers__intCom__43D61337" Association="Self.FK__tblUsers__intCom__43D61337">
-            <End Role="tblCompanies" EntitySet="tblCompanies" />
-            <End Role="tblUsers" EntitySet="tblUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tablLevel1_intCompanyId" Association="Self.FK_tablLevel1_intCompanyId">
-            <End Role="tblCompanies" EntitySet="tblCompanies" />
-            <End Role="tblLevel1" EntitySet="tblLevel1" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblTransporter_intCompanyId" Association="Self.FK_tblTransporter_intCompanyId">
+          <AssociationSet Name="FK__tblTransp__intCo__5AEE82B9" Association="Self.FK__tblTransp__intCo__5AEE82B9">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblTransporter" EntitySet="tblTransporter" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblWarehouse_intCompanyId" Association="Self.FK_tblWarehouse_intCompanyId">
+          <AssociationSet Name="FK__tblUserRo__intRo__1A14E395" Association="Self.FK__tblUserRo__intRo__1A14E395">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblUserRoles" EntitySet="tblUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserRo__intUs__1920BF5C" Association="Self.FK__tblUserRo__intUs__1920BF5C">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserRoles" EntitySet="tblUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsers__intCom__1367E606" Association="Self.FK__tblUsers__intCom__1367E606">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__intCo__5BE2A6F2" Association="Self.FK__tblWareho__intCo__5BE2A6F2">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblWarehouse" EntitySet="tblWarehouse" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="POSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -755,15 +742,14 @@
           <Property Name="varCompanyLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tblItems" Relationship="Self.FK__tblItems__intCom__681373AD" FromRole="tblCompanies" ToRole="tblItems" />
-          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intCom__625A9A57" FromRole="tblCompanies" ToRole="tblParty" />
-          <NavigationProperty Name="tblPledgers" Relationship="Self.FK__tblPledge__intCo__7849DB76" FromRole="tblCompanies" ToRole="tblPledger" />
-          <NavigationProperty Name="tblRoles" Relationship="Self.FK__tblRoles__intCom__46B27FE2" FromRole="tblCompanies" ToRole="tblRoles" />
-          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intCo__6EC0713C" FromRole="tblCompanies" ToRole="tblStockMain" />
-          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUsers__intCom__43D61337" FromRole="tblCompanies" ToRole="tblUsers" />
-          <NavigationProperty Name="tblLevel1" Relationship="POSModel.FK_tablLevel1_intCompanyId" FromRole="tblCompany" ToRole="tblLevel1" />
-          <NavigationProperty Name="tblWarehouses" Relationship="POSModel.FK_tblWarehouse_intCompanyId" FromRole="tblCompany" ToRole="tblWarehouse" />
-          <NavigationProperty Name="tblTransporters" Relationship="POSModel.FK_tblTransporter_intCompanyId" FromRole="tblCompany" ToRole="tblTransporter" />
+          <NavigationProperty Name="tblItems" Relationship="Self.FK__tblItems__intCom__37A5467C" FromRole="tblCompanies" ToRole="tblItems" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intCom__31EC6D26" FromRole="tblCompanies" ToRole="tblParty" />
+          <NavigationProperty Name="tblPledgers" Relationship="Self.FK__tblPledge__intCo__47DBAE45" FromRole="tblCompanies" ToRole="tblPledger" />
+          <NavigationProperty Name="tblRoles" Relationship="Self.FK__tblRoles__intCom__164452B1" FromRole="tblCompanies" ToRole="tblRoles" />
+          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intCo__3E52440B" FromRole="tblCompanies" ToRole="tblStockMain" />
+          <NavigationProperty Name="tblTransporters" Relationship="Self.FK__tblTransp__intCo__5AEE82B9" FromRole="tblCompanies" ToRole="tblTransporter" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUsers__intCom__1367E606" FromRole="tblCompanies" ToRole="tblUsers" />
+          <NavigationProperty Name="tblWarehouses" Relationship="Self.FK__tblWareho__intCo__5BE2A6F2" FromRole="tblCompanies" ToRole="tblWarehouse" />
         </EntityType>
         <EntityType Name="tblComponent">
           <Key>
@@ -774,9 +760,9 @@
           <Property Name="varComponentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tblModule" Relationship="Self.FK__tblCompon__intMo__4F47C5E3" FromRole="tblComponents" ToRole="tblModules" />
-          <NavigationProperty Name="tblFields" Relationship="Self.FK__tblFields__intCo__5224328E" FromRole="tblComponents" ToRole="tblFields" />
-          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intCo__56E8E7AB" FromRole="tblComponents" ToRole="tblPermissions" />
+          <NavigationProperty Name="tblModule" Relationship="Self.FK__tblCompon__intMo__1ED998B2" FromRole="tblComponents" ToRole="tblModules" />
+          <NavigationProperty Name="tblFields" Relationship="Self.FK__tblFields__intCo__21B6055D" FromRole="tblComponents" ToRole="tblFields" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intCo__267ABA7A" FromRole="tblComponents" ToRole="tblPermissions" />
         </EntityType>
         <EntityType Name="tblField">
           <Key>
@@ -787,8 +773,8 @@
           <Property Name="varFieldName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tblComponent" Relationship="Self.FK__tblFields__intCo__5224328E" FromRole="tblFields" ToRole="tblComponents" />
-          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intFi__57DD0BE4" FromRole="tblFields" ToRole="tblPermissions" />
+          <NavigationProperty Name="tblComponent" Relationship="Self.FK__tblFields__intCo__21B6055D" FromRole="tblFields" ToRole="tblComponents" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intFi__276EDEB3" FromRole="tblFields" ToRole="tblPermissions" />
         </EntityType>
         <EntityType Name="tblItem">
           <Key>
@@ -814,8 +800,10 @@
           <Property Name="dtExpiryDate" Type="DateTime" Precision="3" />
           <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblItems__intCom__681373AD" FromRole="tblItems" ToRole="tblCompanies" />
-          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intIt__74794A92" FromRole="tblItems" ToRole="tblStockDetail" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="intUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblItems__intCom__37A5467C" FromRole="tblItems" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intIt__440B1D61" FromRole="tblItems" ToRole="tblStockDetail" />
         </EntityType>
         <EntityType Name="tblLevel1">
           <Key>
@@ -827,10 +815,9 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblLevel2__intLe__5CA1C101" FromRole="tblLevel1" ToRole="tblLevel2" />
-          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__634EBE90" FromRole="tblLevel1" ToRole="tblParty" />
           <Property Name="intCompanyId" Type="Int32" />
-          <NavigationProperty Name="tblCompany" Relationship="POSModel.FK_tablLevel1_intCompanyId" FromRole="tblLevel1" ToRole="tblCompany" />
+          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblLevel2__intLe__2C3393D0" FromRole="tblLevel1" ToRole="tblLevel2" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__32E0915F" FromRole="tblLevel1" ToRole="tblParty" />
         </EntityType>
         <EntityType Name="tblLevel2">
           <Key>
@@ -843,9 +830,9 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblLevel1" Relationship="Self.FK__tblLevel2__intLe__5CA1C101" FromRole="tblLevel2" ToRole="tblLevel1" />
-          <NavigationProperty Name="tblLevel3" Relationship="Self.FK__tblLevel3__intLe__5F7E2DAC" FromRole="tblLevel2" ToRole="tblLevel3" />
-          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__6442E2C9" FromRole="tblLevel2" ToRole="tblParty" />
+          <NavigationProperty Name="tblLevel1" Relationship="Self.FK__tblLevel2__intLe__2C3393D0" FromRole="tblLevel2" ToRole="tblLevel1" />
+          <NavigationProperty Name="tblLevel3" Relationship="Self.FK__tblLevel3__intLe__2F10007B" FromRole="tblLevel2" ToRole="tblLevel3" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__33D4B598" FromRole="tblLevel2" ToRole="tblParty" />
         </EntityType>
         <EntityType Name="tblLevel3">
           <Key>
@@ -858,8 +845,8 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblLevel3__intLe__5F7E2DAC" FromRole="tblLevel3" ToRole="tblLevel2" />
-          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__65370702" FromRole="tblLevel3" ToRole="tblParty" />
+          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblLevel3__intLe__2F10007B" FromRole="tblLevel3" ToRole="tblLevel2" />
+          <NavigationProperty Name="tblParties" Relationship="Self.FK__tblParty__intLev__34C8D9D1" FromRole="tblLevel3" ToRole="tblParty" />
         </EntityType>
         <EntityType Name="tblModule">
           <Key>
@@ -869,8 +856,8 @@
           <Property Name="varModuleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tblComponents" Relationship="Self.FK__tblCompon__intMo__4F47C5E3" FromRole="tblModules" ToRole="tblComponents" />
-          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intMo__55F4C372" FromRole="tblModules" ToRole="tblPermissions" />
+          <NavigationProperty Name="tblComponents" Relationship="Self.FK__tblCompon__intMo__1ED998B2" FromRole="tblModules" ToRole="tblComponents" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intMo__25869641" FromRole="tblModules" ToRole="tblPermissions" />
         </EntityType>
         <EntityType Name="tblParty">
           <Key>
@@ -890,12 +877,12 @@
           <Property Name="intLevel3Id" Type="Int32" />
           <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblParty__intCom__625A9A57" FromRole="tblParty" ToRole="tblCompanies" />
-          <NavigationProperty Name="tblLevel1" Relationship="Self.FK__tblParty__intLev__634EBE90" FromRole="tblParty" ToRole="tblLevel1" />
-          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblParty__intLev__6442E2C9" FromRole="tblParty" ToRole="tblLevel2" />
-          <NavigationProperty Name="tblLevel3" Relationship="Self.FK__tblParty__intLev__65370702" FromRole="tblParty" ToRole="tblLevel3" />
-          <NavigationProperty Name="tblPledgers" Relationship="Self.FK__tblPledge__intPa__793DFFAF" FromRole="tblParty" ToRole="tblPledger" />
-          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intPa__6FB49575" FromRole="tblParty" ToRole="tblStockMain" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblParty__intCom__31EC6D26" FromRole="tblParty" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblLevel1" Relationship="Self.FK__tblParty__intLev__32E0915F" FromRole="tblParty" ToRole="tblLevel1" />
+          <NavigationProperty Name="tblLevel2" Relationship="Self.FK__tblParty__intLev__33D4B598" FromRole="tblParty" ToRole="tblLevel2" />
+          <NavigationProperty Name="tblLevel3" Relationship="Self.FK__tblParty__intLev__34C8D9D1" FromRole="tblParty" ToRole="tblLevel3" />
+          <NavigationProperty Name="tblPledgers" Relationship="Self.FK__tblPledge__intPa__48CFD27E" FromRole="tblParty" ToRole="tblPledger" />
+          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intPa__3F466844" FromRole="tblParty" ToRole="tblStockMain" />
         </EntityType>
         <EntityType Name="tblPermission">
           <Key>
@@ -911,10 +898,10 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblComponent" Relationship="Self.FK__tblPermis__intCo__56E8E7AB" FromRole="tblPermissions" ToRole="tblComponents" />
-          <NavigationProperty Name="tblField" Relationship="Self.FK__tblPermis__intFi__57DD0BE4" FromRole="tblPermissions" ToRole="tblFields" />
-          <NavigationProperty Name="tblModule" Relationship="Self.FK__tblPermis__intMo__55F4C372" FromRole="tblPermissions" ToRole="tblModules" />
-          <NavigationProperty Name="tblRole" Relationship="Self.FK__tblPermis__intRo__55009F39" FromRole="tblPermissions" ToRole="tblRoles" />
+          <NavigationProperty Name="tblComponent" Relationship="Self.FK__tblPermis__intCo__267ABA7A" FromRole="tblPermissions" ToRole="tblComponents" />
+          <NavigationProperty Name="tblField" Relationship="Self.FK__tblPermis__intFi__276EDEB3" FromRole="tblPermissions" ToRole="tblFields" />
+          <NavigationProperty Name="tblModule" Relationship="Self.FK__tblPermis__intMo__25869641" FromRole="tblPermissions" ToRole="tblModules" />
+          <NavigationProperty Name="tblRole" Relationship="Self.FK__tblPermis__intRo__24927208" FromRole="tblPermissions" ToRole="tblRoles" />
         </EntityType>
         <EntityType Name="tblPledger">
           <Key>
@@ -933,8 +920,8 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblPledge__intCo__7849DB76" FromRole="tblPledger" ToRole="tblCompanies" />
-          <NavigationProperty Name="tblParty" Relationship="Self.FK__tblPledge__intPa__793DFFAF" FromRole="tblPledger" ToRole="tblParty" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblPledge__intCo__47DBAE45" FromRole="tblPledger" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblParty" Relationship="Self.FK__tblPledge__intPa__48CFD27E" FromRole="tblPledger" ToRole="tblParty" />
         </EntityType>
         <EntityType Name="tblRole">
           <Key>
@@ -947,8 +934,8 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblRoles__intCom__46B27FE2" FromRole="tblRoles" ToRole="tblCompanies" />
-          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intRo__55009F39" FromRole="tblRoles" ToRole="tblPermissions" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblRoles__intCom__164452B1" FromRole="tblRoles" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblPermissions" Relationship="Self.FK__tblPermis__intRo__24927208" FromRole="tblRoles" ToRole="tblPermissions" />
           <NavigationProperty Name="tblUsers" Relationship="Self.tblUserRoles" FromRole="tblRoles" ToRole="tblUsers" />
         </EntityType>
         <EntityType Name="tblStockDetail">
@@ -974,9 +961,9 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblItem" Relationship="Self.FK__tblStockD__intIt__74794A92" FromRole="tblStockDetail" ToRole="tblItems" />
-          <NavigationProperty Name="tblStockMain" Relationship="Self.FK__tblStockD__intSt__73852659" FromRole="tblStockDetail" ToRole="tblStockMain" />
-          <NavigationProperty Name="tblWarehouse" Relationship="Self.FK__tblStockD__intWa__756D6ECB" FromRole="tblStockDetail" ToRole="tblWarehouse" />
+          <NavigationProperty Name="tblItem" Relationship="Self.FK__tblStockD__intIt__440B1D61" FromRole="tblStockDetail" ToRole="tblItems" />
+          <NavigationProperty Name="tblStockMain" Relationship="Self.FK__tblStockD__intSt__4316F928" FromRole="tblStockDetail" ToRole="tblStockMain" />
+          <NavigationProperty Name="tblWarehouse" Relationship="Self.FK__tblStockD__intWa__44FF419A" FromRole="tblStockDetail" ToRole="tblWarehouse" />
         </EntityType>
         <EntityType Name="tblStockMain">
           <Key>
@@ -1000,10 +987,10 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblStockM__intCo__6EC0713C" FromRole="tblStockMain" ToRole="tblCompanies" />
-          <NavigationProperty Name="tblParty" Relationship="Self.FK__tblStockM__intPa__6FB49575" FromRole="tblStockMain" ToRole="tblParty" />
-          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intSt__73852659" FromRole="tblStockMain" ToRole="tblStockDetail" />
-          <NavigationProperty Name="tblTransporter" Relationship="Self.FK__tblStockM__intTr__70A8B9AE" FromRole="tblStockMain" ToRole="tblTransporter" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblStockM__intCo__3E52440B" FromRole="tblStockMain" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblParty" Relationship="Self.FK__tblStockM__intPa__3F466844" FromRole="tblStockMain" ToRole="tblParty" />
+          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intSt__4316F928" FromRole="tblStockMain" ToRole="tblStockDetail" />
+          <NavigationProperty Name="tblTransporter" Relationship="Self.FK__tblStockM__intTr__403A8C7D" FromRole="tblStockMain" ToRole="tblTransporter" />
         </EntityType>
         <EntityType Name="tblTransporter">
           <Key>
@@ -1018,9 +1005,9 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intTr__70A8B9AE" FromRole="tblTransporter" ToRole="tblStockMain" />
           <Property Name="intCompanyId" Type="Int32" />
-          <NavigationProperty Name="tblCompany" Relationship="POSModel.FK_tblTransporter_intCompanyId" FromRole="tblTransporter" ToRole="tblCompany" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblTransp__intCo__5AEE82B9" FromRole="tblTransporter" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblStockMains" Relationship="Self.FK__tblStockM__intTr__403A8C7D" FromRole="tblTransporter" ToRole="tblStockMain" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -1038,7 +1025,7 @@
           <Property Name="varPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="dtCreationDate" Type="DateTime" Precision="3" />
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblUsers__intCom__43D61337" FromRole="tblUsers" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblUsers__intCom__1367E606" FromRole="tblUsers" ToRole="tblCompanies" />
           <NavigationProperty Name="tblRoles" Relationship="Self.tblUserRoles" FromRole="tblUsers" ToRole="tblRoles" />
         </EntityType>
         <EntityType Name="tblWarehouse">
@@ -1051,11 +1038,11 @@
           <Property Name="dtUpdationDate" Type="DateTime" Precision="3" />
           <Property Name="intCreatedBy" Type="Int32" />
           <Property Name="intUpdatedBy" Type="Int32" />
-          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intWa__756D6ECB" FromRole="tblWarehouse" ToRole="tblStockDetail" />
           <Property Name="intCompanyId" Type="Int32" />
-          <NavigationProperty Name="tblCompany" Relationship="POSModel.FK_tblWarehouse_intCompanyId" FromRole="tblWarehouse" ToRole="tblCompany" />
+          <NavigationProperty Name="tblCompany" Relationship="Self.FK__tblWareho__intCo__5BE2A6F2" FromRole="tblWarehouse" ToRole="tblCompanies" />
+          <NavigationProperty Name="tblStockDetails" Relationship="Self.FK__tblStockD__intWa__44FF419A" FromRole="tblWarehouse" ToRole="tblStockDetail" />
         </EntityType>
-        <Association Name="FK__tblItems__intCom__681373AD">
+        <Association Name="FK__tblItems__intCom__37A5467C">
           <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
           <End Role="tblItems" Type="Self.tblItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1067,7 +1054,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intCom__625A9A57">
+        <Association Name="FK__tblParty__intCom__31EC6D26">
           <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1079,7 +1066,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPledge__intCo__7849DB76">
+        <Association Name="FK__tblPledge__intCo__47DBAE45">
           <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
           <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1091,7 +1078,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblRoles__intCom__46B27FE2">
+        <Association Name="FK__tblRoles__intCom__164452B1">
           <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
           <End Role="tblRoles" Type="Self.tblRole" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1103,7 +1090,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockM__intCo__6EC0713C">
+        <Association Name="FK__tblStockM__intCo__3E52440B">
           <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1115,7 +1102,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblUsers__intCom__43D61337">
+        <Association Name="FK__tblTransp__intCo__5AEE82B9">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblTransporter" Type="Self.tblTransporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblTransporter">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsers__intCom__1367E606">
           <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
           <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1127,7 +1126,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblCompon__intMo__4F47C5E3">
+        <Association Name="FK__tblWareho__intCo__5BE2A6F2">
+          <End Role="tblCompanies" Type="Self.tblCompany" Multiplicity="0..1" />
+          <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompanies">
+              <PropertyRef Name="intCompanyId" />
+            </Principal>
+            <Dependent Role="tblWarehouse">
+              <PropertyRef Name="intCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCompon__intMo__1ED998B2">
           <End Role="tblModules" Type="Self.tblModule" Multiplicity="0..1" />
           <End Role="tblComponents" Type="Self.tblComponent" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1139,7 +1150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblFields__intCo__5224328E">
+        <Association Name="FK__tblFields__intCo__21B6055D">
           <End Role="tblComponents" Type="Self.tblComponent" Multiplicity="0..1" />
           <End Role="tblFields" Type="Self.tblField" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1151,7 +1162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intCo__56E8E7AB">
+        <Association Name="FK__tblPermis__intCo__267ABA7A">
           <End Role="tblComponents" Type="Self.tblComponent" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1163,7 +1174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intFi__57DD0BE4">
+        <Association Name="FK__tblPermis__intFi__276EDEB3">
           <End Role="tblFields" Type="Self.tblField" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1175,7 +1186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockD__intIt__74794A92">
+        <Association Name="FK__tblStockD__intIt__440B1D61">
           <End Role="tblItems" Type="Self.tblItem" Multiplicity="0..1" />
           <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1187,7 +1198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblLevel2__intLe__5CA1C101">
+        <Association Name="FK__tblLevel2__intLe__2C3393D0">
           <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
           <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1199,7 +1210,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intLev__634EBE90">
+        <Association Name="FK__tblParty__intLev__32E0915F">
           <End Role="tblLevel1" Type="Self.tblLevel1" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1211,7 +1222,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblLevel3__intLe__5F7E2DAC">
+        <Association Name="FK__tblLevel3__intLe__2F10007B">
           <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
           <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1223,7 +1234,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intLev__6442E2C9">
+        <Association Name="FK__tblParty__intLev__33D4B598">
           <End Role="tblLevel2" Type="Self.tblLevel2" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1235,7 +1246,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblParty__intLev__65370702">
+        <Association Name="FK__tblParty__intLev__34C8D9D1">
           <End Role="tblLevel3" Type="Self.tblLevel3" Multiplicity="0..1" />
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1247,7 +1258,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intMo__55F4C372">
+        <Association Name="FK__tblPermis__intMo__25869641">
           <End Role="tblModules" Type="Self.tblModule" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1259,7 +1270,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPledge__intPa__793DFFAF">
+        <Association Name="FK__tblPledge__intPa__48CFD27E">
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
           <End Role="tblPledger" Type="Self.tblPledger" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1271,7 +1282,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockM__intPa__6FB49575">
+        <Association Name="FK__tblStockM__intPa__3F466844">
           <End Role="tblParty" Type="Self.tblParty" Multiplicity="0..1" />
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1283,7 +1294,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPermis__intRo__55009F39">
+        <Association Name="FK__tblPermis__intRo__24927208">
           <End Role="tblRoles" Type="Self.tblRole" Multiplicity="0..1" />
           <End Role="tblPermissions" Type="Self.tblPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1295,7 +1306,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockD__intSt__73852659">
+        <Association Name="FK__tblStockD__intSt__4316F928">
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="0..1" />
           <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1307,7 +1318,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockD__intWa__756D6ECB">
+        <Association Name="FK__tblStockD__intWa__44FF419A">
           <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="0..1" />
           <End Role="tblStockDetail" Type="Self.tblStockDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1319,7 +1330,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblStockM__intTr__70A8B9AE">
+        <Association Name="FK__tblStockM__intTr__403A8C7D">
           <End Role="tblTransporter" Type="Self.tblTransporter" Multiplicity="0..1" />
           <End Role="tblStockMain" Type="Self.tblStockMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1353,95 +1364,103 @@
           <EntitySet Name="tblTransporters" EntityType="Self.tblTransporter" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
           <EntitySet Name="tblWarehouses" EntityType="Self.tblWarehouse" />
-          <AssociationSet Name="FK__tblItems__intCom__681373AD" Association="Self.FK__tblItems__intCom__681373AD">
+          <AssociationSet Name="FK__tblItems__intCom__37A5467C" Association="Self.FK__tblItems__intCom__37A5467C">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblItems" EntitySet="tblItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intCom__625A9A57" Association="Self.FK__tblParty__intCom__625A9A57">
+          <AssociationSet Name="FK__tblParty__intCom__31EC6D26" Association="Self.FK__tblParty__intCom__31EC6D26">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblParty" EntitySet="tblParties" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPledge__intCo__7849DB76" Association="Self.FK__tblPledge__intCo__7849DB76">
+          <AssociationSet Name="FK__tblPledge__intCo__47DBAE45" Association="Self.FK__tblPledge__intCo__47DBAE45">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblPledger" EntitySet="tblPledgers" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblRoles__intCom__46B27FE2" Association="Self.FK__tblRoles__intCom__46B27FE2">
+          <AssociationSet Name="FK__tblRoles__intCom__164452B1" Association="Self.FK__tblRoles__intCom__164452B1">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblRoles" EntitySet="tblRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockM__intCo__6EC0713C" Association="Self.FK__tblStockM__intCo__6EC0713C">
+          <AssociationSet Name="FK__tblStockM__intCo__3E52440B" Association="Self.FK__tblStockM__intCo__3E52440B">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblStockMain" EntitySet="tblStockMains" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblUsers__intCom__43D61337" Association="Self.FK__tblUsers__intCom__43D61337">
+          <AssociationSet Name="FK__tblTransp__intCo__5AEE82B9" Association="Self.FK__tblTransp__intCo__5AEE82B9">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblTransporter" EntitySet="tblTransporters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsers__intCom__1367E606" Association="Self.FK__tblUsers__intCom__1367E606">
             <End Role="tblCompanies" EntitySet="tblCompanies" />
             <End Role="tblUsers" EntitySet="tblUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblCompon__intMo__4F47C5E3" Association="Self.FK__tblCompon__intMo__4F47C5E3">
+          <AssociationSet Name="FK__tblWareho__intCo__5BE2A6F2" Association="Self.FK__tblWareho__intCo__5BE2A6F2">
+            <End Role="tblCompanies" EntitySet="tblCompanies" />
+            <End Role="tblWarehouse" EntitySet="tblWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCompon__intMo__1ED998B2" Association="Self.FK__tblCompon__intMo__1ED998B2">
             <End Role="tblModules" EntitySet="tblModules" />
             <End Role="tblComponents" EntitySet="tblComponents" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblFields__intCo__5224328E" Association="Self.FK__tblFields__intCo__5224328E">
+          <AssociationSet Name="FK__tblFields__intCo__21B6055D" Association="Self.FK__tblFields__intCo__21B6055D">
             <End Role="tblComponents" EntitySet="tblComponents" />
             <End Role="tblFields" EntitySet="tblFields" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intCo__56E8E7AB" Association="Self.FK__tblPermis__intCo__56E8E7AB">
+          <AssociationSet Name="FK__tblPermis__intCo__267ABA7A" Association="Self.FK__tblPermis__intCo__267ABA7A">
             <End Role="tblComponents" EntitySet="tblComponents" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intFi__57DD0BE4" Association="Self.FK__tblPermis__intFi__57DD0BE4">
+          <AssociationSet Name="FK__tblPermis__intFi__276EDEB3" Association="Self.FK__tblPermis__intFi__276EDEB3">
             <End Role="tblFields" EntitySet="tblFields" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockD__intIt__74794A92" Association="Self.FK__tblStockD__intIt__74794A92">
+          <AssociationSet Name="FK__tblStockD__intIt__440B1D61" Association="Self.FK__tblStockD__intIt__440B1D61">
             <End Role="tblItems" EntitySet="tblItems" />
             <End Role="tblStockDetail" EntitySet="tblStockDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblLevel2__intLe__5CA1C101" Association="Self.FK__tblLevel2__intLe__5CA1C101">
+          <AssociationSet Name="FK__tblLevel2__intLe__2C3393D0" Association="Self.FK__tblLevel2__intLe__2C3393D0">
             <End Role="tblLevel1" EntitySet="tblLevel1" />
             <End Role="tblLevel2" EntitySet="tblLevel2" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intLev__634EBE90" Association="Self.FK__tblParty__intLev__634EBE90">
+          <AssociationSet Name="FK__tblParty__intLev__32E0915F" Association="Self.FK__tblParty__intLev__32E0915F">
             <End Role="tblLevel1" EntitySet="tblLevel1" />
             <End Role="tblParty" EntitySet="tblParties" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblLevel3__intLe__5F7E2DAC" Association="Self.FK__tblLevel3__intLe__5F7E2DAC">
+          <AssociationSet Name="FK__tblLevel3__intLe__2F10007B" Association="Self.FK__tblLevel3__intLe__2F10007B">
             <End Role="tblLevel2" EntitySet="tblLevel2" />
             <End Role="tblLevel3" EntitySet="tblLevel3" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intLev__6442E2C9" Association="Self.FK__tblParty__intLev__6442E2C9">
+          <AssociationSet Name="FK__tblParty__intLev__33D4B598" Association="Self.FK__tblParty__intLev__33D4B598">
             <End Role="tblLevel2" EntitySet="tblLevel2" />
             <End Role="tblParty" EntitySet="tblParties" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblParty__intLev__65370702" Association="Self.FK__tblParty__intLev__65370702">
+          <AssociationSet Name="FK__tblParty__intLev__34C8D9D1" Association="Self.FK__tblParty__intLev__34C8D9D1">
             <End Role="tblLevel3" EntitySet="tblLevel3" />
             <End Role="tblParty" EntitySet="tblParties" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intMo__55F4C372" Association="Self.FK__tblPermis__intMo__55F4C372">
+          <AssociationSet Name="FK__tblPermis__intMo__25869641" Association="Self.FK__tblPermis__intMo__25869641">
             <End Role="tblModules" EntitySet="tblModules" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPledge__intPa__793DFFAF" Association="Self.FK__tblPledge__intPa__793DFFAF">
+          <AssociationSet Name="FK__tblPledge__intPa__48CFD27E" Association="Self.FK__tblPledge__intPa__48CFD27E">
             <End Role="tblParty" EntitySet="tblParties" />
             <End Role="tblPledger" EntitySet="tblPledgers" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockM__intPa__6FB49575" Association="Self.FK__tblStockM__intPa__6FB49575">
+          <AssociationSet Name="FK__tblStockM__intPa__3F466844" Association="Self.FK__tblStockM__intPa__3F466844">
             <End Role="tblParty" EntitySet="tblParties" />
             <End Role="tblStockMain" EntitySet="tblStockMains" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPermis__intRo__55009F39" Association="Self.FK__tblPermis__intRo__55009F39">
+          <AssociationSet Name="FK__tblPermis__intRo__24927208" Association="Self.FK__tblPermis__intRo__24927208">
             <End Role="tblRoles" EntitySet="tblRoles" />
             <End Role="tblPermissions" EntitySet="tblPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockD__intSt__73852659" Association="Self.FK__tblStockD__intSt__73852659">
+          <AssociationSet Name="FK__tblStockD__intSt__4316F928" Association="Self.FK__tblStockD__intSt__4316F928">
             <End Role="tblStockMain" EntitySet="tblStockMains" />
             <End Role="tblStockDetail" EntitySet="tblStockDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockD__intWa__756D6ECB" Association="Self.FK__tblStockD__intWa__756D6ECB">
+          <AssociationSet Name="FK__tblStockD__intWa__44FF419A" Association="Self.FK__tblStockD__intWa__44FF419A">
             <End Role="tblWarehouse" EntitySet="tblWarehouses" />
             <End Role="tblStockDetail" EntitySet="tblStockDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblStockM__intTr__70A8B9AE" Association="Self.FK__tblStockM__intTr__70A8B9AE">
+          <AssociationSet Name="FK__tblStockM__intTr__403A8C7D" Association="Self.FK__tblStockM__intTr__403A8C7D">
             <End Role="tblTransporter" EntitySet="tblTransporters" />
             <End Role="tblStockMain" EntitySet="tblStockMains" />
           </AssociationSet>
@@ -1449,55 +1468,7 @@
             <End Role="tblRoles" EntitySet="tblRoles" />
             <End Role="tblUsers" EntitySet="tblUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_tablLevel1_intCompanyId" Association="POSModel.FK_tablLevel1_intCompanyId">
-            <End Role="tblCompany" EntitySet="tblCompanies" />
-            <End Role="tblLevel1" EntitySet="tblLevel1" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblWarehouse_intCompanyId" Association="POSModel.FK_tblWarehouse_intCompanyId">
-            <End Role="tblCompany" EntitySet="tblCompanies" />
-            <End Role="tblWarehouse" EntitySet="tblWarehouses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblTransporter_intCompanyId" Association="POSModel.FK_tblTransporter_intCompanyId">
-            <End Role="tblCompany" EntitySet="tblCompanies" />
-            <End Role="tblTransporter" EntitySet="tblTransporters" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_tablLevel1_intCompanyId">
-          <End Type="POSModel.tblCompany" Role="tblCompany" Multiplicity="0..1" />
-          <End Type="POSModel.tblLevel1" Role="tblLevel1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCompany">
-              <PropertyRef Name="intCompanyId" />
-            </Principal>
-            <Dependent Role="tblLevel1">
-              <PropertyRef Name="intCompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblWarehouse_intCompanyId">
-          <End Type="POSModel.tblCompany" Role="tblCompany" Multiplicity="0..1" />
-          <End Type="POSModel.tblWarehouse" Role="tblWarehouse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCompany">
-              <PropertyRef Name="intCompanyId" />
-            </Principal>
-            <Dependent Role="tblWarehouse">
-              <PropertyRef Name="intCompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTransporter_intCompanyId">
-          <End Type="POSModel.tblCompany" Role="tblCompany" Multiplicity="0..1" />
-          <End Type="POSModel.tblTransporter" Role="tblTransporter" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCompany">
-              <PropertyRef Name="intCompanyId" />
-            </Principal>
-            <Dependent Role="tblTransporter">
-              <PropertyRef Name="intCompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1563,19 +1534,21 @@
                 <ScalarProperty Name="dtExpiryDate" ColumnName="dtExpiryDate" />
                 <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
                 <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLevel1">
             <EntityTypeMapping TypeName="POSModel.tblLevel1">
               <MappingFragment StoreEntitySet="tblLevel1">
-                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
                 <ScalarProperty Name="intLevel1Id" ColumnName="intLevel1Id" />
                 <ScalarProperty Name="varLevel1Name" ColumnName="varLevel1Name" />
                 <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
                 <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
                 <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
                 <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1735,7 +1708,6 @@
           <EntitySetMapping Name="tblTransporters">
             <EntityTypeMapping TypeName="POSModel.tblTransporter">
               <MappingFragment StoreEntitySet="tblTransporter">
-                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
                 <ScalarProperty Name="intTransporterId" ColumnName="intTransporterId" />
                 <ScalarProperty Name="varTransporterName" ColumnName="varTransporterName" />
                 <ScalarProperty Name="varContactNo" ColumnName="varContactNo" />
@@ -1745,6 +1717,7 @@
                 <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
                 <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
                 <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1769,13 +1742,13 @@
           <EntitySetMapping Name="tblWarehouses">
             <EntityTypeMapping TypeName="POSModel.tblWarehouse">
               <MappingFragment StoreEntitySet="tblWarehouse">
-                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
                 <ScalarProperty Name="intWarehouseId" ColumnName="intWarehouseId" />
                 <ScalarProperty Name="varWarehouseName" ColumnName="varWarehouseName" />
                 <ScalarProperty Name="dtCreationDate" ColumnName="dtCreationDate" />
                 <ScalarProperty Name="dtUpdationDate" ColumnName="dtUpdationDate" />
                 <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
                 <ScalarProperty Name="intUpdatedBy" ColumnName="intUpdatedBy" />
+                <ScalarProperty Name="intCompanyId" ColumnName="intCompanyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

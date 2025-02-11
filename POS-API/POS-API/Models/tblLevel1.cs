@@ -33,6 +33,5 @@ namespace POS_API.Models
         public virtual ICollection<tblLevel2> tblLevel2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblParty> tblParties { get; set; }
-        public virtual tblCompany tblCompany { get; set; }
     }
 }
