@@ -189,5 +189,30 @@ namespace POS_API.Services
             return level3s;
         }
 
+        public async Task<int> GetMaxId(string tableName, string columnName, string etype, DateTime? vrdate)
+        {
+            int nextId = 1;
+            string query = $"SELECT ISNULL(MAX({columnName}), 0) + 1 AS max_id FROM {tableName} where dtVrDate = '{vrdate}' and varVrType = '{etype}'";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        object result = await command.ExecuteScalarAsync();
+                        nextId = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error fetching next ID from {tableName}: {ex.Message}", ex);
+            }
+
+            return nextId;
+        }
+
     }
 }
