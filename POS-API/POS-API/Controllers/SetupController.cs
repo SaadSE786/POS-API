@@ -250,6 +250,7 @@ namespace POS_API.Controllers
             }
         }
         #endregion
+
         #region Level3
         [HttpPost, Route("addLevel3")]
         public HttpResponseMessage AddLevel3([FromBody] Level3 lvl)
@@ -356,6 +357,7 @@ namespace POS_API.Controllers
             }
         }
         #endregion
+
         #region Item
         [HttpPost,Route("addItem")]
         public HttpResponseMessage AddItem([FromBody] Item item)
@@ -748,7 +750,6 @@ namespace POS_API.Controllers
         {
             try
             {
-
                 tblTransporter transporter = db.tblTransporters.Find(id);
                 if (transporter == null)
                 {
@@ -790,5 +791,164 @@ namespace POS_API.Controllers
             }
         }
         #endregion
+        #region User
+        [HttpGet, Route("getUser")]
+        public HttpResponseMessage GetUser()
+        {
+            try
+            {
+                var users = db.tblUsers.ToList() 
+            .Select(u => new User
+            {
+                intUserId = u.intUserId,
+                varName = u.varName,
+                varEmail = u.varEmail,
+                varAddress = u.varAddress,
+                varPassword = u.varPassword,
+                varCnic = u.varCnic,
+                varContactNo = u.varContactNo,
+                intCompanyId = u.intCompanyId,
+                dtCreationDate = u.dtCreationDate,
+                dtUpdationDate = u.dtUpdationDate,
+                //intCreatedBy = u.intCreatedBy,
+                //intUpdatedBy = u.intUpdatedBy,
+                varPhoto = u.varPhoto != null ? Convert.ToBase64String(u.varPhoto) : null
+            }).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success",  users });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+
+        [HttpGet, Route("getUserById/{id}")]
+        public HttpResponseMessage GetUserById(int id)
+        {
+            try
+            {
+                var userEntity = db.tblUsers.FirstOrDefault(u => u.intUserId == id);
+
+                if (userEntity == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not Found" });
+                }
+
+                var user = new User
+                {
+                    intUserId = userEntity.intUserId,
+                    varName = userEntity.varName,
+                    varEmail = userEntity.varEmail,
+                    varAddress = userEntity.varAddress,
+                    varPassword = userEntity.varPassword,
+                    varCnic = userEntity.varCnic,
+                    varContactNo = userEntity.varContactNo,
+                    intCompanyId = userEntity.intCompanyId,
+                    dtCreationDate = userEntity.dtCreationDate,
+                    dtUpdationDate = userEntity.dtUpdationDate,
+                    //intCreatedBy = userEntity.intCreatedBy,
+                    //intUpdatedBy = userEntity.intUpdatedBy,
+                    varPhoto = userEntity.varPhoto != null ? Convert.ToBase64String(userEntity.varPhoto) : null
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success", user = user });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+
+        [HttpPost, Route("addUser")]
+        public HttpResponseMessage AddUser([FromBody] User user)
+        {
+            try
+            {
+                if (user == null)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, new { status = 400, message = "Bad Request" });
+
+                tblUser tblUser = new tblUser
+                {
+                    varName = user.varName,
+                    varEmail = user.varEmail,
+                    varAddress = user.varAddress,
+                    varPassword = user.varPassword,
+                    varCnic = user.varCnic,
+                    varContactNo = user.varContactNo,
+                    intCompanyId = user.intCompanyId,
+                    dtCreationDate = DateTime.Now,
+                    //intCreatedBy = user.intCreatedBy,
+                    varPhoto = !string.IsNullOrEmpty(user.varPhoto) ? Convert.FromBase64String(user.varPhoto) : null
+                };
+
+                db.tblUsers.Add(tblUser);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+
+        [HttpPut, Route("updateUser")]
+        public HttpResponseMessage UpdateUser([FromBody] User user)
+        {
+            try
+            {
+                tblUser tblUser = db.tblUsers.Find(user.intUserId);
+                if (tblUser == null)
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not Found" });
+
+                tblUser.varName = user.varName;
+                tblUser.varEmail = user.varEmail;
+                tblUser.varAddress = user.varAddress;
+                tblUser.varPassword = user.varPassword;
+                tblUser.varCnic = user.varCnic;
+                tblUser.varContactNo = user.varContactNo;
+                tblUser.intCompanyId = user.intCompanyId;
+                tblUser.dtUpdationDate = DateTime.Now;
+                //tblUser.intUpdatedBy = user.intUpdatedBy;
+
+                if (!string.IsNullOrEmpty(user.varPhoto))
+                {
+                    tblUser.varPhoto = Convert.FromBase64String(user.varPhoto);
+                }
+
+                db.Entry(tblUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+
+        [HttpDelete, Route("deleteUser/{id}")]
+        public HttpResponseMessage DeleteUser(int id)
+        {
+            try
+            {
+                tblUser user = db.tblUsers.Find(id);
+                if (user == null)
+                    return Request.CreateResponse(HttpStatusCode.OK, new { status = 202, message = "Not Found" });
+
+                db.tblUsers.Remove(user);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, new { status = 200, message = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                throw;
+            }
+        }
+        #endregion
+
+        
     }
 }

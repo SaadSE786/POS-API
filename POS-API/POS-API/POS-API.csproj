@@ -196,9 +196,13 @@
     <Compile Include="BusinessObjects\Level1.cs" />
     <Compile Include="BusinessObjects\Level2.cs" />
     <Compile Include="BusinessObjects\Level3.cs" />
+    <Compile Include="BusinessObjects\StockDetail.cs" />
+    <Compile Include="BusinessObjects\StockMain.cs" />
     <Compile Include="BusinessObjects\Transporter.cs" />
+    <Compile Include="BusinessObjects\User.cs" />
     <Compile Include="BusinessObjects\Warehouse.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

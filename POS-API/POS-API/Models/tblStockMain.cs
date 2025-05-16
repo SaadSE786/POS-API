@@ -38,6 +38,7 @@ namespace POS_API.Models
         public Nullable<System.DateTime> dtUpdationDate { get; set; }
         public Nullable<int> intCreatedBy { get; set; }
         public Nullable<int> intUpdatedBy { get; set; }
+        public Nullable<decimal> dcTotalAmount { get; set; }
     
         public virtual tblCompany tblCompany { get; set; }
         public virtual tblParty tblParty { get; set; }
